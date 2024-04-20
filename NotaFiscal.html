@@ -1,0 +1,257 @@
+<div class="NotaFiscal">            
+    <table class="NotaFiscal-Resumo">
+        <tr>
+            <td class="abrir-calculo" rowspan="2">
+                <span class="material-symbols-outlined">
+                    calculate
+                    </span>
+            </td>
+            <th>NOTA<br>FISCAL</th>
+            <td>598418</td>
+            <th>EMISSÃO</th>
+            <td>01/03/2024</td>
+            <th>EMITENTE</th>
+            <td colspan="5">MUNDIALTRACTOR COMERCIO IMPORTACAO E EXPORTACAO LTDA</td>
+            <th>CNPJ</th>
+            <td>55.147.961/0001-15</td>
+            <th>UF</th>
+            <td>SP</td>
+        </tr>
+        <tr>
+            <th>TOTAL DA<br>NOTA</th>
+            <td>1.560,97</td>
+            <th>IMPOSTO<br>CALCULADO</th>
+            <td>269,76</td>
+            <th>IMPOSTO<br>SEFAZ</th>
+            <td>65,55</td>
+            <th>IMPOSTO<br>PAGO</th>
+            <td>274,34</td>
+            <th>SALDO</th>
+            <td>-4,58</td>
+            <th>EMITENTE<br>SIMPLES</th>
+            <td>
+                <select name="emitente-simples" id="emitente-simples">
+                    <option value="1">SIM</option>
+                    <option value="0">NÃO</option>
+                </select>
+            </td>
+            <th>SITUAÇÃO<br>NOTA</th>
+            <td>
+                <select name="situacao-nota" id="situacao-nota">
+                    <option value="1">AUTORIZADA</option>
+                    <option value="0">CANCELADA</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <h4 style="margin-left: 2%;">Itens da Nota Fiscal</h4>
+    <div class="NotaFiscal-Calculo">
+        <table class="table-itens-NotaFiscal">
+            <thead>
+                <tr>
+                    <th>Nº ITEM</th>
+                    <th>NCM</th>
+                    <th>CEST</th>
+                    <th>CFOP</th>
+                    <th>DESCRIÇÃO</th>
+                    <th>QUANTIDADE</th>
+                    <th>VALOR</th>
+                    <th>IPI</th>
+                    <th>FRETE</th>
+                    <th>SEGURO</th>
+                    <th>DESPESAS ACESSORIAS</th>
+                    <th>DESCONTO</th>
+                    <th>ICMS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>4016.93.00</td>
+                    <td>01.007.00</td>
+                    <td>6403</td>
+                    <td>2759884 - JUNTA CARTER</td>
+                    <td>1</td> 
+                    <td>151,00</td>
+                    <td>7,85</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>
+                        <select name="TIPO-CALCULO" id="TIPO-CALCULO">
+                            <option value="">S.T.</option>
+                            <option value="">Antec. Trib.</option>
+                            <option value="">Dif. Al.</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr style="display: none;">
+                    <td colspan="13" style="background-color: transparent;">
+                        <table class="calculo-ICMS">
+                            <thead>
+                                <th>SEGMENTO</th>
+                                <th>BASE DE CALCULO<br>ICMS NORMAL</th>
+                                <th>REDUÇÃO<br>BASE DE CALCULO</th>
+                                <th>BASE REDUZIDA</th>
+                                <th>ALIQUOTA<br>ICMS NORMAL</th>
+                                <th>VALOR<br>ICMS NORMAL</th>
+                                <th>MVA</th>
+                                <th>MVA<br>AJUSTADO</th>
+                                <th>BASE DE CALCULO<br>ICMS ST</th>
+                                <th>ALIQUOTA<br>ICMS ST</th>
+                                <th>VALOR<br>ICMS ST</th>
+                            </thead>
+                            <tr>
+                                <td>AUTOPEÇAS</td>
+                                <td>151,00</td>
+                                <td>0</td>
+                                <td>151,00</td>
+                                <td>4,00</td>
+                                <td>6,04</td>
+                                <td>71,78</td>
+                                <td>101,11</td>
+                                <td>319,46</td>
+                                <td>20,50</td>
+                                <td>59,45</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>4016.93.00</td>
+                    <td>01.007.00</td>
+                    <td>6403</td>
+                    <td>2258019 - JUNTA BOMBA D'AGUA</td>
+                    <td>1</td>
+                    <td>59,00</td>
+                    <td>3,07</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>
+                        <select name="TIPO-CALCULO" id="TIPO-CALCULO">
+                            <option value="">S.T.</option>
+                            <option value="">Antec. Trib.</option>
+                            <option value="">Dif. Al.</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>4016.93.00</td>
+                    <td>01.007.00</td>
+                    <td>6403</td>
+                    <td>2773013 - RETENTOR DIANTEIRO</td>
+                    <td>1</td>
+                    <td>69,00</td>
+                    <td>3,59</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>
+                        <select name="TIPO-CALCULO" id="TIPO-CALCULO">
+                            <option value="">S.T.</option>
+                            <option value="">Antec. Trib.</option>
+                            <option value="">Dif. Al.</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>8708.50.19</td>
+                    <td>01.075.00</td>
+                    <td>6403</td>
+                    <td>2332613 - BUCHA</td>
+                    <td>2</td>
+                    <td>96,00</td>
+                    <td>3,12</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>
+                        <select name="TIPO-CALCULO" id="TIPO-CALCULO">
+                            <option value="">S.T.</option>
+                            <option value="">Antec. Trib.</option>
+                            <option value="">Dif. Al.</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>8431.49.23</td>
+                    <td>01.045.00</td>
+                    <td>6404</td>
+                    <td>2774837 - TANQUE C/TAMPA</td>
+                    <td>1</td>
+                    <td>387,00</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>
+                        <select name="TIPO-CALCULO" id="TIPO-CALCULO">
+                            <option value="">S.T.</option>
+                            <option value="">Antec. Trib.</option>
+                            <option value="">Dif. Al.</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>7407.29.29</td>
+                    <td>10.063.00</td>
+                    <td>6102</td>
+                    <td>1781685 - TIRA DE BRONZE</td>
+                    <td>3</td>
+                    <td>507,00</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>
+                        <select name="TIPO-CALCULO" id="TIPO-CALCULO">
+                            <option value="">S.T.</option>
+                            <option value="">Antec. Trib.</option>
+                            <option value="">Dif. Al.</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="13" style="background-color: transparent;">
+                        <table class="calculo-ICMS">
+                            <thead>
+                                <th>BASE DE CALCULO<br>ICMS NORMAL</th>
+                                <th>REDUÇÃO<br>BASE DE CALCULO</th>
+                                <th>BASE REDUZIDA</th>
+                                <th>ALIQUOTA<br>ICMS NORMAL</th>
+                                <th>VALOR<br>ICMS NORMAL</th>
+                                <th>REDUÇÃO DE<br>ALIQUOTA</th>
+                                <th>BASE REDUZIDA</th>
+                                <th>ALIQUOTA INTERNA<br>ICMS</th>
+                                <th>VALOR ICMS</th>
+                            </thead>
+                            <tr>
+                                <td>507,00</td>
+                                <td>0</td>
+                                <td>507,00</td>
+                                <td>7,00</td>
+                                <td>35,49</td>
+                                <td>11,05</td>
+                                <td>593,09</td>
+                                <td>20,50</td>
+                                <td>65,54</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compras Interestaduais</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <header>
+        <div>
+            <img src=".\Imagens\lalogo.png" alt="logo" style="width: auto; height: 80px; margin-left: 30px;">
+        </div>
+
+        <div class="menu">
+            <ul>
+                <li id="XML" onclick="navBOTOES('XML')">XML</li>
+                <li id="NCM" onclick="navBOTOES('NCM')">NCM</li>
+                <li id="DECRETOS" onclick="navBOTOES('DECRETO')">DECRETOS</li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <table class="table-informacoes-iniciais">
+            <thead>
+                <tr>
+                    <th colspan="4">INFORMAÇÕES INICIAIS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>MULTI TRATORES PECAS LTDA ME</td>
+                    <td>21.426.007/0001-40</td>
+                    <td>0601767-33</td>
+                    <td>PE</td>
+                </tr>
+                <tr>
+                    <td>Regime Tributário:</td>
+                    <td>
+                        <select name="regime-tributario" id="regime-tributario">
+                            <option value="1">Simples Nacional - EPP</option>
+                            <option value="2">Simples Nacional - ME</option>
+                            <option value="0">Contribuinte Normal</option>
+                        </select>
+                    </td>
+                    <td>Regularidade:</td>
+                    <td>                        
+                        <select name="regularidade" id="regularidade">
+                            <option value="1">Regular</option>
+                            <option value="0">Irregular</option>
+                        </select>
+                </td>
+                </tr>
+            </tbody>
+        </table>
+        <h5>Data do calculo: 19/04/2024</h5>
+        <div id="content"></div>
+    </main>
+
+    <!-- NCM OPTIONS -->
+    <div id="menu-ncm" style="display: none;">
+        <section id="opcoes">
+            <ul style="flex-direction: column;">
+                <li onclick="MenuNCM('CADASTRAR')">CADASTRAR NCM</li>
+                <li onclick="MenuNCM('PESQUISAR')">PESQUISAR NCM</li>
+            </ul>
+        </section>
+    </div>
+    <!-- NCM OPTIONS -->
+
+    <!-- Janela Modal -->
+    <span id="overlay" onclick="fecharOverlay()" style="display: none;">
+        <div id="modal-xml" onclick="event.stopPropagation()" style="display: none;">
+            <section id="upload-hd" style="width: 100%; text-align: center; background-color: #2975c2; color: white; padding: 25px 0px; font-size: 1.6rem;">
+                <h2>FAÇA O UPLOAD DOS XML's</h2>
+            </section>
+            <section id="infoXML" style="width: 100%; text-align: center; background-color: white; color: gray; padding: 40px 0px;">
+                <h5>Atenção, os arquivos xml devem estar no formato .zip</h5>
+            </section>
+            <section id="UPLOAD" onclick="document.getElementById('upload').click()">
+                <span class="material-symbols-outlined">upload</span>
+                <input id="upload" type="file" style="display: none;">
+            </section>
+            <section id="upload-bg" style="width: 100%; background-color: white; padding: 40px 0px; display: none;">
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <div id="loading" class="loader-icon" style="display: none;"></div>
+                    <div id="done" class="confirmation-icon" style="display: none;">
+                        <span class="material-symbols-outlined" style="font-size: 36px; font-weight: 500;">done</span>   
+                    </div>
+                    <div id="error" class="error-icon" style="display: none;">
+                        <span class="material-symbols-outlined" style="font-size: 36px; font-weight: 500;">close</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div id="modal-cadastrar-ncm" onclick="event.stopPropagation()" style="display: none;">
+            <form action="">
+                <label for="NCM">NCM</label>
+                <input type="text" name="NCM">
+                <label for="CEST">CEST</label>
+                <input type="text" name="CEST">
+                <label for="SEGMENTO">SEGMENTO</label>
+                <input id="SEGMENTO" type="search" name="SEGMENTO" onfocus="mostrarItens('SEGMENTO')" readonly>
+                <label for="MVA">MVA ORIGINAL</label>
+                <input type="text" name="MVA">
+                <label for="ALIQUOTA">ALIQUOTA</label>
+                <input type="text" name="ALIQUOTA">
+                <label for="DECRETO">DECRETO</label>
+                <input id="DECRETO" type="search" name="DECRETO" onfocus="mostrarItens('DECRETO')" readonly>
+                <label for="STATUS">STATUS</label>
+                <input id="STATUS" type="search" name="STATUS" onfocus="mostrarItens('STATUS')" readonly>
+                <label for="OBSERVACAO">OBSERVAÇÃO</label>
+                <input id="OBSERVACAO" type="search" name="OBSERVACAO" onfocus="mostrarItens('OBSERVACAO')">
+                <input id="SALVAR-NCM" type="submit" value="SALVAR">
+            </form>
+            <div id="menu-search">
+                <ul id="segmentos" style="display: none;">
+                    <li>AUTOPEÇAS</li>
+                    <li>BEBIDAS ALCOÓLICAS, EXCETO CERVEJA E CHOPE</li>
+                    <li>CERVEJAS, CHOPES, REFRIGERANTES, ÁGUAS E OUTRAS BEBIDAS</li>
+                    <li>CIGARROS E OUTROS PRODUTOS DERIVADOS DO FUMO</li>
+                    <li>CIMENTOS</li>
+                    <li>COMBUSTÍVEIS E LUBRIFICANTES</li>
+                    <li>ENERGIA ELÉTRICA</li>
+                    <li>FERRAMENTAS</li>
+                    <li>LÂMPADAS, REATORES E “STARTER”</li>
+                    <li>MATERIAIS DE CONSTRUÇÃO E CONGÊNERES</li>
+                    <li>MATERIAIS DE LIMPEZA</li>
+                    <li>MATERIAIS ELÉTRICOS</li>
+                    <li>MEDICAMENTOS DE USO HUMANO E OUTROS PRODUTOS FARMACÊUTICOS PARA USO HUMANO OU VETERINÁRIO</li>
+                    <li>PAPÉIS, PLÁSTICOS, PRODUTOS CERÂMICOS E VIDROS</li>
+                    <li>PNEUMÁTICOS, CÂMARAS DE AR E PROTETORES DE BORRACHA</li>
+                </ul>
+                <ul id="decretos" style="display: none;">
+                    <li>DECRETO Nº 42.563/2015</li>
+                </ul>
+                <ul id="status" style="display: none;">
+                    <li>ATIVO</li>
+                    <li>INATIVO</li>
+                </ul>
+                <textarea id="observacao" cols="auto" rows="auto"></textarea>
+            </div>
+        </div>
+        <div id="modal-ncm-tabela" onclick="event.stopPropagation()" style="display: none;">
+            <table class="ncm-tabela">
+                <thead style="position: sticky; top: 0;">
+                    <tr>
+                        <th>NCM</th>
+                        <th>CEST</th>
+                        <th>STATUS</th>
+                        <th>SEGMENTO</th>
+                        <th>ALIQUOTA<br>INTERNA</th>
+                        <th>MVA</th>
+                        <th>DECRETO</th>
+                        <th>OBSERVAÇÃO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>8544.42.00</td>
+                        <td>12.007.00</td>
+                        <td>ATIVO</td>
+                        <td>MATERIAIS ELÉTRICOS</td>
+                        <td>7%</td>
+                        <td>41,00%</td>
+                        <td>42.563/2015</td>
+                        <td>Condutores elétricos, para tensão não superior a 1000 V, munidos de peças de conexão</td>
+                    </tr>
+                    <tr>
+                        <td>4016.93.00</td>
+                        <td>01.007.00</td>
+                        <td>ATIVO</td>
+                        <td>MATERIAIS DE CONSTRUÇÃO E CONGÊNERES</td>
+                        <td>18%</td>
+                        <td>43,00%</td>
+                        <td>42.563/2015</td>
+                        <td>Juntas, gaxetas e outros elementos com função semelhante de vedação</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="modal-decretos" onclick="event.stopPropagation()" style="display: none;">
+            <div id="novo-decreto">
+                <form action="">
+                    <div style="width: 80%;">
+                        <div style="margin-left: 25px;">
+                            <label for="BASE_LEGAL">BASE LEGAL:</label>
+                            <input type="text" name="BASE_LEGAL" style="width: 71%;">
+                        </div>
+                        <div style="margin-top: 20px; margin-left: 25px;">
+                            <label for="LINK_BASE_LEGAL">LINK:</label>
+                            <input type="text" name="LINK_BASE_LEGAL" style="width: 85%;">
+                        </div>
+                    </div>
+                    <input type="submit" value="SALVAR" style="margin-right: 50px; padding: 5px 10px; background-color: #afd7ff; color: #044482; width: 20%;">
+                </form>
+            </div>
+            <div id="decretos-lista">
+                <table style="position: relative;">
+                    <thead style="position: sticky; top: 0;">
+                        <tr>
+                            <th>BASE LEGAL - LISTA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a href="https://www.sefaz.pe.gov.br/Legislacao/Tributaria/Documents/Legislacao/Decretos/2015/Dec42563_2015.htm">DECRETO N° 42.563/2015</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://www.confaz.fazenda.gov.br/legislacao/convenios/2018/CV142_18">CONVÊNIO ICMS N° 142/18</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://www.sefaz.pe.gov.br/Legislacao/Tributaria/Documents/legislacao/44650/texto/Dec44650_2017.htm">DECRETO N° 44.650/2017</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </span>
+    <!-- /Janela Modal -->
+
+    <script>
+        fetch('NotaFiscal.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('content').innerHTML = data;
+        })
+    </script>
+
+    <script>
+        document.getElementById("upload").addEventListener('change', () => {
+            document.getElementById("UPLOAD").style.display = 'none';
+            document.getElementById("infoXML").style.display = 'none';
+            document.getElementById("upload-bg").style.display = '';
+            document.getElementById("loading").style.display = '';
+            document.getElementById("upload-hd").children[0].innerHTML = "LENDO ARQUIVOS...";
+
+            setTimeout(()=>{
+                document.getElementById("loading").style.display = 'none';
+                document.getElementById("upload-hd").children[0].innerHTML = "TUDO CERTO COM OS ARQUIVOS!";
+                document.getElementById("done").style.display = '';
+            }, 2000);
+
+            setTimeout(()=>{
+                fecharOverlay();
+            }, 2500);
+        });
+
+        function navBOTOES(botao){
+            if (botao == "XML"){
+                document.getElementById("overlay").style.display = 'flex';
+                document.getElementById("modal-xml").style.display = '';
+            }
+            if(botao == "NCM"){
+                document.getElementById("menu-ncm").style.display = (document.getElementById("menu-ncm").style.display == 'none')? '': 'none';
+            }
+            if (botao == "DECRETO"){
+                document.getElementById("overlay").style.display = 'flex';
+                document.getElementById("modal-decretos").style.display = '';
+            }
+        }
+
+        function MenuNCM(option){
+            document.getElementById("overlay").style.display = 'flex';
+            if (option == "CADASTRAR"){
+                 document.getElementById("modal-cadastrar-ncm").style.display = '';
+                 document.getElementById("modal-ncm-tabela").style.display = 'none';
+            }else if (option == "PESQUISAR"){
+                document.getElementById("modal-ncm-tabela").style.display = '';
+                document.getElementById("modal-cadastrar-ncm").style.display = 'none';
+            }   
+        }
+
+        function mostrarItens(lista){
+            const segmento = document.getElementById("segmentos");
+            const decreto = document.getElementById("decretos");
+            const status = document.getElementById("status");
+            const observacao = document.getElementById("observacao");
+
+            if(lista == 'SEGMENTO'){
+                segmento.style.display = 'flex';
+                decreto.style.display = 'none';
+                status.style.display = 'none';
+                observacao.style.display = 'none';
+                selecionarOpcao(segmento, document.getElementById('SEGMENTO'));
+            }else if (lista == 'DECRETO'){
+                segmento.style.display = 'none';
+                decreto.style.display = 'flex';
+                status.style.display = 'none';
+                observacao.style.display = 'none';
+                selecionarOpcao(decreto, document.getElementById('DECRETO'));
+            }else if (lista == 'STATUS'){
+                segmento.style.display = 'none';
+                decreto.style.display = 'none';
+                status.style.display = 'flex';
+                observacao.style.display = 'none';
+                selecionarOpcao(status, document.getElementById('STATUS'));
+            }else if(lista == 'OBSERVACAO'){
+                segmento.style.display = 'none';
+                decreto.style.display = 'none';
+                status.style.display = 'none';
+                observacao.style.display = '';
+            }
+            else{
+                segmento.style.display = 'none';
+                decreto.style.display = 'none';
+                status.style.display = 'none';
+            }
+
+            function selecionarOpcao(ul, input){
+                ul.addEventListener('click', (event)=>{
+                    if(event.target.tagName === 'LI'){
+                        input.value = event.target.innerHTML;
+                    }
+                })
+            }
+
+            document.getElementById("observacao").addEventListener('input', (event)=>{
+                document.getElementById("OBSERVACAO").value = event.target.value;
+            });
+            document.getElementById("OBSERVACAO").addEventListener('input', (event)=>{
+                document.getElementById("observacao").value = event.target.value;
+            });
+        }
+
+        function fecharOverlay(){
+            document.getElementById("overlay").style.display = 'none';
+            document.getElementById("modal-xml").style.display = 'none';
+            document.getElementById("modal-cadastrar-ncm").style.display = 'none';
+            document.getElementById("modal-ncm-tabela").style.display = 'none';
+            document.getElementById("modal-decretos").style.display = 'none';
+        }
+    </script>
+</body>
+</html>

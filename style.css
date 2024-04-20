@@ -1,0 +1,354 @@
+/* GERAL */
+    *{
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-family: "Roboto", Sans-serif;
+        box-sizing: border-box;
+    }
+    body{
+        background-color: #b0c1cc;
+    }
+    header{
+        width: 100%;
+        height: 10vh;
+        background-color: #2975c2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+/* TABELAS */
+    table{
+        margin: 10px;
+    }
+    th, td{
+        padding: 5px;
+    }
+    th{
+        background-color: #2975c0;
+        color: white;
+    }
+    td{
+        background-color: white;
+        text-align: center;
+    }
+
+/* NOTA FISCAL */
+    .NotaFiscal{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .NotaFiscal-Resumo{
+        background-color: #2975c0;
+        border-radius: 5px;
+        overflow: hidden;
+        border-spacing: 10px;
+    }
+    .NotaFiscal-Resumo th,td{
+        padding: 5px;
+    }
+    .NotaFiscal-Resumo td{
+        border-radius: 8px;
+    }
+    .NotaFiscal-Resumo select{
+        outline: none;
+    }
+    .table-informacoes-iniciais{
+        width: 70%;
+    }
+    .table-informacoes-iniciais select{
+        outline: none;
+        font-size: inherit;
+    }
+    .abrir-calculo{
+        background-color: #2975c0;
+    }
+    .abrir-calculo span{
+        background-color: #2975c0;
+        font-size: 36px;
+        border: 1px solid white;
+        padding: 9px;
+        border-radius: 50%;
+        color: #afd7ff;
+    }
+    .abrir-calculo span:hover{
+        cursor: pointer;
+    }
+    .NotaFiscal-Calculo table{
+        width: 100%;
+    }
+    .calculo-ICMS{
+        margin: 0;
+        background-color: #2975c0;
+        border-bottom: 5px solid #2975c0;
+    }
+    .table-itens-NotaFiscal{
+        border: 2px solid #2975c0;
+        padding: 3px;
+        border-radius: 5px;
+        background-color: #afd7ff;
+    }
+    .table-itens-NotaFiscal select{
+        outline: none;
+    }
+    .table-itens-NotaFiscal tbody{
+        margin-top: 10px;
+    }
+
+/* MENU PRINCIPAL */
+    .menu{
+        margin-right: 30px;
+        color: white;
+    }
+    ul{
+        display: flex;
+        list-style-type: none;
+    }
+    .menu li{
+        display: flex;
+        margin: 15px;
+        padding: 0px 20px;
+        height: 45px;
+        background-color: #044482;
+        justify-content: center;
+        align-items: center;            
+        border-radius: 5px;
+        font-weight: 600;
+    }
+    .menu li:hover{
+        cursor: pointer;
+    }
+
+/* MENU SECUNDÁRIO */
+#menu-ncm{
+    margin-top: 0px;
+    background-color: #2975c2;
+    position: absolute;
+    top: 10vh;
+    right: 0;
+    width: 200px;
+    margin-right: 30px;
+    border-radius: 0px 0px 5px 5px;
+}
+#menu-ncm li{
+    text-align: center;
+    background-color: #044482;
+    margin: 10px;
+    padding: 10px;
+    color: white;
+    font-weight: 550;
+    border-radius: 5px;
+}
+#menu-ncm li:hover{
+    cursor: pointer;
+}
+
+/* MODALS */
+    #overlay{
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.300);
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    #modal-xml{
+        width: 700px;
+        height: 300px;
+    }
+    #UPLOAD{
+        width: 100%;
+        text-align: center;
+        background-color: white;
+        color: white;
+        padding: 30px 0px;
+    }
+    #UPLOAD:hover{
+        cursor: pointer;
+    }
+    #UPLOAD span{
+        padding: 15px;
+        background-color: #044482;
+        border-radius: 8px;
+        font-size: 48px;
+    }
+    .loader-icon{
+        animation: is-rotating 1s infinite;
+        border: 6px solid rgba(206, 206, 206, 0.700);
+        border-top-color: #2975c2;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+    }
+    @keyframes is-rotating{
+        to{
+            transform: rotate(1turn);
+        }
+    }
+    .confirmation-icon{
+        background-color: #2975c2;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+    .error-icon{
+        background-color: #eb2d2d;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+    #modal-cadastrar-ncm{
+        background-color: #2975c2;
+        width: 700px;
+        height: 650px;
+        border-radius: 5px;
+        display: flex;
+    }
+    #modal-cadastrar-ncm form{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        font-size: 1.2rem;
+        width: 350px;
+    }
+    #modal-cadastrar-ncm label{
+        color: white;
+        margin: 8px;
+    }
+    #modal-cadastrar-ncm input{
+        font-size: inherit;
+        padding: 5px;
+        width: 90%;
+        text-align: center;
+    }
+    #SALVAR-NCM{
+        margin-top: 25px;
+        background-color: #044482;
+        color: white;
+    }
+    #menu-search{
+        border: 15px solid #2975c0;
+        width: 350px;
+        height: 650px;
+        background-color: white;
+        overflow: auto;
+        border-radius: 5px;
+    }
+    #menu-search ul{
+        flex-direction: column;
+    }
+    #menu-search li{
+        text-align: center;
+        margin: 5px;
+        padding: 3px;
+    }
+    #menu-search li:hover{
+        cursor: pointer;
+        background-color: #afd7ff;
+    }
+    #modal-ncm-tabela{
+        border: 15px solid #2975c0;
+        width: 1200px;
+        height: 70vh;
+        background-color: #afd7ff;
+        overflow: auto;
+        border-radius: 5px;
+    }
+    .ncm-tabela{
+        position: relative;
+    }
+    .ncm-tabela th{
+        background-color: #afd7ff;
+        border: none;
+        color: #044482;
+    }
+    .ncm-tabela td{
+        background-color: white;
+        border: none;
+        color: #044482;
+        border-radius: 5px;
+    }
+    #observacao{
+        width: 100%;
+        height: 99%;
+        outline: none;
+        resize: none;
+        font-size: inherit;
+        padding: 10px;
+    }
+    #modal-decretos{
+        width: 900px;
+        height: 500px;
+    }
+    #modal-decretos #novo-decreto{
+        background-color: #044482;
+        width: 100%;
+        height: 30%;
+        border-radius: 5px;
+    }
+    #novo-decreto form{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 1.2rem;
+        height: 100%;
+    }
+    #novo-decreto form label{
+        color: white;
+    }
+    #novo-decreto form input{
+        font-size: inherit;
+        border-radius: 5px;
+        padding: 0px 5px;
+        padding: 5px;
+    }
+    .input-number::-webkit-inner-spin-button{
+        -webkit-appearance: none;
+    }
+    #modal-decretos #decretos-lista{
+        margin-top: 50px;
+        background-color: white;
+        border-color: #2975c0;
+        width: 100%;
+        height: 60%;
+        border: 15px solid #2975c0;
+        border-radius: 5px;
+        overflow: auto;
+    }
+    #decretos-lista table{
+        width: 100%;
+        margin: 0;
+        border-spacing: 0px;
+    }
+    #decretos-lista th{
+        background-color: #2975c0;
+        border: 2px solid white;
+    }
+    #decretos-lista td{
+        border: 2.5px solid white;
+    }
+    #decretos-lista td:hover{
+        cursor: pointer;
+        background-color: #afd7ff;
+    }
