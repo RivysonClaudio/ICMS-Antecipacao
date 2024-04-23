@@ -55,7 +55,7 @@
                 </tr>
             </tbody>
         </table>
-        <h5>Data do calculo: 19/04/2024</h5>
+        <h5 style="margin: 10px;">Data do calculo: 19/04/2024</h5>
         <div id="content"></div>
     </main>
 
@@ -81,7 +81,10 @@
             </section>
             <section id="UPLOAD" onclick="document.getElementById('upload').click()">
                 <span class="material-symbols-outlined">upload</span>
-                <input id="upload" type="file" style="display: none;">
+                <form action="javascript: void(0)" id="upload-form">
+                    <input id="upload" name="file" type="file" style="display: none;">
+                    <input type="submit" id="upload-btn" style="display: none;">
+                </form>
             </section>
             <section id="upload-bg" style="width: 100%; background-color: white; padding: 40px 0px; display: none;">
                 <div style="display: flex; align-items: center; justify-content: center;">
@@ -223,13 +226,19 @@
     <!-- /Janela Modal -->
 
     <script src="script.js"></script>
+    <script src="enviar_aquivos.js"></script>
 
-    <script>
-        fetch('NotaFiscal.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('content').innerHTML = data;
-        })
+    <script script_NotaFiscal>
+        function MostrarProdutos(event) {
+            const produtos = event.target.closest('.NotaFiscal').querySelector('.NotaFiscal-Calculo');
+            if(produtos.style.display === 'none'){produtos.style.display = ''; return;};
+            produtos.style.display = 'none';
+        }
+        function MostrarCalculo(event){
+            const calculo = event.target.closest('tr').nextElementSibling;
+            if(calculo.style.display === 'none'){calculo.style.display = ''; return};
+            calculo.style.display = 'none';
+        }
     </script>
 
     <script>

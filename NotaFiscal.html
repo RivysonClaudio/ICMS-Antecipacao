@@ -1,7 +1,7 @@
-<div class="NotaFiscal">            
+<div class="NotaFiscal" id="598418">            
     <table class="NotaFiscal-Resumo">
         <tr>
-            <td class="abrir-calculo" rowspan="2">
+            <td class="abrir-calculo" rowspan="2" onclick="MostrarProdutos(event)">
                 <span class="material-symbols-outlined">
                     calculate
                     </span>
@@ -44,8 +44,7 @@
             </td>
         </tr>
     </table>
-    <h4 style="margin-left: 2%;">Itens da Nota Fiscal</h4>
-    <div class="NotaFiscal-Calculo">
+    <div class="NotaFiscal-Calculo" style="display: none;">
         <table class="table-itens-NotaFiscal">
             <thead>
                 <tr>
@@ -66,7 +65,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>1</td>
+                    <td onclick="MostrarCalculo(event)">1</td>
                     <td>4016.93.00</td>
                     <td>01.007.00</td>
                     <td>6403</td>
@@ -86,7 +85,7 @@
                         </select>
                     </td>
                 </tr>
-                <tr style="display: none;">
+                <tr class="calculo" style="display: none;">
                     <td colspan="13" style="background-color: transparent;">
                         <table class="calculo-ICMS">
                             <thead>
@@ -202,7 +201,7 @@
                         </select>
                     </td>
                 </tr>
-                <tr>
+                <tr onclick="MostrarCalculo(event)">
                     <td>6</td>
                     <td>7407.29.29</td>
                     <td>10.063.00</td>
@@ -223,7 +222,7 @@
                         </select>
                     </td>
                 </tr>
-                <tr>
+                <tr class="calculo" style="display: none;">
                     <td colspan="13" style="background-color: transparent;">
                         <table class="calculo-ICMS">
                             <thead>

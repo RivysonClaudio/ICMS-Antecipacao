@@ -25,9 +25,6 @@
     }
 
 /* TABELAS */
-    table{
-        margin: 10px;
-    }
     th, td{
         padding: 5px;
     }
@@ -45,6 +42,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        margin-bottom: 50px;
     }
     .NotaFiscal-Resumo{
         background-color: #2975c0;
@@ -62,6 +60,7 @@
         outline: none;
     }
     .table-informacoes-iniciais{
+        margin-top: 25px;
         width: 70%;
     }
     .table-informacoes-iniciais select{
@@ -82,6 +81,9 @@
     .abrir-calculo span:hover{
         cursor: pointer;
     }
+    .NotaFiscal-Calculo{
+        margin-top: 15px;
+    }
     .NotaFiscal-Calculo table{
         width: 100%;
     }
@@ -101,6 +103,9 @@
     }
     .table-itens-NotaFiscal tbody{
         margin-top: 10px;
+    }
+    .table-itens-NotaFiscal td:hover{
+        cursor: pointer;
     }
 
 /* MENU PRINCIPAL */
