@@ -27,11 +27,18 @@ if ($zip->open($zipFilePath) === true) {
 
         $notaFiscal = new NotaFiscal($xml);
         
-        echo $i+1 . '-' . $notaFiscal->dhEmi . '<br>';
+        if($notaFiscal->emit['UF'] != 'PE'){
+            $notasFiscais[] = $notaFiscal;
+        }
 
         unlink($tempFilePath);
     }
+
+    echo json_encode($notasFiscais);
+
     $zip->close();
+    
+    unlink($zipFilePath);
 } else {
     echo 'Erro ao abrir o arquivo ZIP';
 }

@@ -8,7 +8,7 @@ class NotaFiscal
     var $dhEmi;
     var $emit;
     var $dest;
-    var $itens = array();
+    var $produtos = array();
 
     public function __construct($xml){
         $this->nNF = (string)$xml->NFe->infNFe->ide->nNF;
@@ -26,7 +26,7 @@ class NotaFiscal
         );
 
         foreach($xml->NFe->infNFe->det as $item){
-            $this->itens[] = new Produto($item);
+            $this->produtos[] = new Produto($item);
         }
     }
 }
