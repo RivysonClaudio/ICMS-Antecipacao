@@ -30,11 +30,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>MULTI TRATORES PECAS LTDA ME</td>
-                    <td>21.426.007/0001-40</td>
-                    <td>0601767-33</td>
-                    <td>PE</td>
+                <tr id="info-dest">
                 </tr>
                 <tr>
                     <td>Regime Tributário:</td>
@@ -56,7 +52,9 @@
             </tbody>
         </table>
         <h5 style="margin: 10px;">Data do calculo: 19/04/2024</h5>
-        <div id="container"></div>
+        <div id="container">
+            
+        </div>
     </main>
 
     <!-- NCM OPTIONS -->
@@ -241,24 +239,6 @@
     </script>
 
     <script>
-        document.getElementById("upload").addEventListener('change', () => {
-            document.getElementById("UPLOAD").style.display = 'none';
-            document.getElementById("infoXML").style.display = 'none';
-            document.getElementById("upload-bg").style.display = '';
-            document.getElementById("loading").style.display = '';
-            document.getElementById("upload-hd").children[0].innerHTML = "LENDO ARQUIVOS...";
-
-            setTimeout(()=>{
-                document.getElementById("loading").style.display = 'none';
-                document.getElementById("upload-hd").children[0].innerHTML = "TUDO CERTO COM OS ARQUIVOS!";
-                document.getElementById("done").style.display = '';
-            }, 2000);
-
-            setTimeout(()=>{
-                fecharOverlay();
-            }, 2500);
-        });
-
         function navBOTOES(botao){
             if (botao == "XML"){
                 document.getElementById("overlay").style.display = 'flex';

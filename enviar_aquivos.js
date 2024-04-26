@@ -8,6 +8,8 @@ fileInput.addEventListener('change', () => {
 form.addEventListener('submit', sendForm, false);
 
 function sendForm(event){
+    modalDeUpload("Enviando arquivos");
+
     let formData, ajax;
 
     formData = new FormData(event.target);
@@ -17,6 +19,7 @@ function sendForm(event){
     ajax.onreadystatechange = () => {
         if (ajax.status == 200 && ajax.readyState == 4){
             form.reset();
+
             if (ajax.response == 'Arquivos carregados com sucesso!'){
                 RequisicaoJSON();
             }
@@ -28,6 +31,8 @@ function sendForm(event){
 }
 
 function RequisicaoJSON(){
+    modalDeUpload("Lendo Arquivos");
+
     let ajax = new XMLHttpRequest();
     
     ajax.onreadystatechange = () => {
@@ -43,9 +48,24 @@ function RequisicaoJSON(){
 }
 
 function mostrarNotasFiscais(request_answer, container){
+    modalDeUpload("OK");
+    
+    informacoesDaEmpresa(request_answer[0]);
+
     request_answer.forEach(NF => {
         container.innerHTML += HTML_STRUCT(NF);
     });
+}
+
+function informacoesDaEmpresa(nota){
+    for(let i = 0; i < 4; i++){
+        let newCell = document.createElement('td');
+        if(i === 0){newCell.innerHTML = nota.dest.RAZAO_SOCIAL;}
+        if(i === 1){newCell.innerHTML = formatoCNPJ(nota.dest.CNPJ);}
+        if(i === 2){newCell.innerHTML = ""}
+        if(i === 3){newCell.innerHTML = nota.dest.UF}
+        document.getElementById('info-dest').appendChild(newCell);
+    }
 }
 
 function HTML_STRUCT(object_json){
@@ -62,11 +82,11 @@ function HTML_STRUCT(object_json){
                 <th>NOTA<br>FISCAL</th>
                 <td>${object_json.nNF}</td>
                 <th>EMISSÃO</th>
-                <td>${object_json.dhEmi}</td>
+                <td>${formatoData(object_json.dhEmi)}</td>
                 <th>EMITENTE</th>
                 <td colspan="5">${object_json.emit.RAZAO_SOCIAL}</td>
                 <th>CNPJ</th>
-                <td>${object_json.emit.CNPJ}</td>
+                <td>${formatoCNPJ(object_json.emit.CNPJ)}</td>
                 <th>UF</th>
                 <td>${object_json.emit.UF}</td>
             </tr>
@@ -98,7 +118,7 @@ function HTML_STRUCT(object_json){
             </tr>
         </table>
 
-        <div class="NotaFiscal-Calculo">
+        <div class="NotaFiscal-Calculo" style="display: none;">
             <table class="table-itens-NotaFiscal">
                 <thead>
                     <tr>
@@ -128,8 +148,9 @@ function HTML_STRUCT(object_json){
     return HTML_STRUCT_NOTAFISCAL;
 }
 
+
 function listagemDeProdutos(lista_de_produtos){
-    let lista;
+    let lista = "";
     lista_de_produtos.forEach(produto =>{
         lista += HTML_STRUCT_PRODUTO(produto);
     });
@@ -195,4 +216,41 @@ function HTML_STRUCT_PRODUTO(produto){
     `;
 
     return PRODUTO_STRUCT;
+}
+
+function modalDeUpload(status){
+    if(status === "Enviando arquivos"){
+        document.getElementById("UPLOAD").style.display = 'none';
+        document.getElementById("infoXML").style.display = 'none';
+        document.getElementById("upload-bg").style.display = '';
+        document.getElementById("loading").style.display = '';
+        document.getElementById("upload-hd").children[0].innerHTML = "IMPORTANADO ARQUIVOS...";
+    }
+
+    if(status === "Lendo Arquivos"){
+        document.getElementById("upload-hd").children[0].innerHTML = "LENDO OS ARQUIVOS...";
+    }
+
+    if (status === "OK"){
+        document.getElementById("loading").style.display = 'none';
+        document.getElementById("upload-hd").children[0].innerHTML = "TUDO CERTO COM OS ARQUIVOS!";
+        document.getElementById("done").style.display = '';
+
+        setTimeout(()=>{
+            fecharOverlay();
+        }, 2500);
+    }
+}
+
+function formatoData(dhEmi){
+    dhEmi = dhEmi.split('T')[0]
+    dhEmi = dhEmi.split('-');
+    dhEmi = dhEmi[2] + "/" + dhEmi[1] + "/" + dhEmi[0];
+    return dhEmi;
+}
+
+function formatoCNPJ(CNPJ){
+    CNPJ = CNPJ.split("");
+    CNPJ = CNPJ[0]+CNPJ[1]+"."+CNPJ[2]+CNPJ[3]+CNPJ[4]+"."+CNPJ[5]+CNPJ[6]+CNPJ[7]+"/"+CNPJ[8]+CNPJ[9]+CNPJ[10]+CNPJ[11]+"-"+CNPJ[12]+CNPJ[13];
+    return CNPJ;
 }
