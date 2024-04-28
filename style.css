@@ -173,14 +173,16 @@
     }
     #modal-xml{
         width: 700px;
-        height: 300px;
+        /*height: 300px;*/
+        border-radius: 5px;
+        overflow: hidden;
     }
     #UPLOAD{
         width: 100%;
         text-align: center;
         background-color: white;
         color: white;
-        padding: 30px 0px;
+        padding-bottom: 30px;
     }
     #UPLOAD:hover{
         cursor: pointer;
@@ -188,7 +190,7 @@
     #UPLOAD span{
         padding: 15px;
         background-color: #044482;
-        border-radius: 8px;
+        border-radius: 50%;
         font-size: 48px;
     }
     .loader-icon{
@@ -203,17 +205,6 @@
         to{
             transform: rotate(1turn);
         }
-    }
-    .confirmation-icon{
-        background-color: #2975c2;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
     }
     .error-icon{
         background-color: #eb2d2d;

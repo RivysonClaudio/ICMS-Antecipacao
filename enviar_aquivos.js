@@ -1,3 +1,8 @@
+if (sessionStorage.getItem('server_response') != null){
+    mostrarNotasFiscais(JSON.parse(sessionStorage.getItem('server_response')), document.getElementById('container'));
+}
+
+
 const fileInput = document.getElementById('upload');
 const form = document.getElementById('upload-form');
 
@@ -37,8 +42,8 @@ function RequisicaoJSON(){
     
     ajax.onreadystatechange = () => {
         if (ajax.status == 200 && ajax.readyState == 4){
-            console.log(ajax.response);
-            mostrarNotasFiscais(ajax.response, document.getElementById('container'));
+            sessionStorage.setItem('server_response', JSON.stringify(ajax.response));
+            location.reload();
         }
     }
 
@@ -47,9 +52,7 @@ function RequisicaoJSON(){
     ajax.send();
 }
 
-function mostrarNotasFiscais(request_answer, container){
-    modalDeUpload("OK");
-    
+function mostrarNotasFiscais(request_answer, container){  
     informacoesDaEmpresa(request_answer[0]);
 
     request_answer.forEach(NF => {
@@ -138,7 +141,7 @@ function HTML_STRUCT(object_json){
                     </tr>
                 </thead>
                 <tbody>
-                    ${listagemDeProdutos(object_json.produtos)}
+                    ${listagemDeProdutos(object_json.produtos, object_json.nNF, object_json.emit.CNPJ)}
                 </tbody>
             </table>
         </div>
@@ -149,18 +152,18 @@ function HTML_STRUCT(object_json){
 }
 
 
-function listagemDeProdutos(lista_de_produtos){
+function listagemDeProdutos(lista_de_produtos, NF, CNPJ){
     let lista = "";
     lista_de_produtos.forEach(produto =>{
-        lista += HTML_STRUCT_PRODUTO(produto);
+        lista += HTML_STRUCT_PRODUTO(produto, NF, CNPJ);
     });
     return lista;
 }
 
-function HTML_STRUCT_PRODUTO(produto){
+function HTML_STRUCT_PRODUTO(produto, NF, CNPJ){
     const PRODUTO_STRUCT = 
     `
-    <tr>
+    <tr id="NI${produto.nItem}NF${NF+CNPJ}">
         <td onclick="MostrarCalculo(event)">${produto.nItem}</td>
         <td>${produto.NCM}</td>
         <td>${produto.CEST}</td>
@@ -173,16 +176,17 @@ function HTML_STRUCT_PRODUTO(produto){
         <td>${produto.vSeg}</td>
         <td>${produto.vOutro}</td>
         <td>${produto.vDesc}</td>
+        <td style="display: none;">${produto.pICMS}</td>
         <td>
-            <select name="TIPO-CALCULO" id="TIPO-CALCULO">
-                <option value="">S.T.</option>
-                <option value="">Antec. Trib.</option>
-                <option value="">Dif. Al.</option>
+            <select name="TIPO-CALCULO" id="TIPO-CALCULO" onchange="calcular(this.value, 'NI${produto.nItem}NF${NF+CNPJ}', 'NI${produto.nItem}NF${NF+CNPJ}CALC' )">
+                <option value="0">S.T.</option>
+                <option value="1">Antec. Trib.</option>
+                <option value="2">Dif. Al.</option>
             </select>
         </td>
     </tr>
     <tr class="calculo" style="display: none;">
-        <td colspan="13" style="background-color: transparent;">
+        <td id="NI${produto.nItem}NF${NF+CNPJ}CALC" colspan="13" style="background-color: transparent;">
             <table class="calculo-ICMS">
                 <thead>
                     <th>SEGMENTO</th>
@@ -238,7 +242,8 @@ function modalDeUpload(status){
 
         setTimeout(()=>{
             fecharOverlay();
-        }, 2500);
+            document.getElementById("done").style.display = 'none';
+        }, 1500);
     }
 }
 
@@ -253,4 +258,22 @@ function formatoCNPJ(CNPJ){
     CNPJ = CNPJ.split("");
     CNPJ = CNPJ[0]+CNPJ[1]+"."+CNPJ[2]+CNPJ[3]+CNPJ[4]+"."+CNPJ[5]+CNPJ[6]+CNPJ[7]+"/"+CNPJ[8]+CNPJ[9]+CNPJ[10]+CNPJ[11]+"-"+CNPJ[12]+CNPJ[13];
     return CNPJ;
+}
+
+function calcular(value, ID_ITEM, ID_ITEM_CALC){
+    CALCULO_ANTECIPACAO_DIFAL(ID_ITEM, value);
+}
+
+function CALCULO_ANTECIPACAO_DIFAL(ID_ITEM, TIPO){
+    const ITEM = document.getElementById(ID_ITEM).children;
+
+    const VALOR_PRODUTO = parseFloat(ITEM[6].textContent);
+    const IPI = parseFloat(ITEM[7].textContent);
+    const FRETE = parseFloat(ITEM[8].textContent);
+    const SEGURO = parseFloat(ITEM[9].textContent);
+    const OUTRAS_DESPESAS = parseFloat(ITEM[10].textContent);
+    const DESCONTO = parseFloat(ITEM[11].textContent);
+    const AL_ICMS = parseFloat(ITEM[12].textContent);
+
+    console.log(`${VALOR_PRODUTO} + ${IPI} + ${FRETE} + ${SEGURO} + ${OUTRAS_DESPESAS} + ${DESCONTO} + ${AL_ICMS}`);
 }
