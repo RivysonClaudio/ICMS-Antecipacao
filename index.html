@@ -155,27 +155,7 @@
                         <th>OBSERVAÇÃO</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>8544.42.00</td>
-                        <td>12.007.00</td>
-                        <td>ATIVO</td>
-                        <td>MATERIAIS ELÉTRICOS</td>
-                        <td>7%</td>
-                        <td>41,00%</td>
-                        <td>42.563/2015</td>
-                        <td>Condutores elétricos, para tensão não superior a 1000 V, munidos de peças de conexão</td>
-                    </tr>
-                    <tr>
-                        <td>4016.93.00</td>
-                        <td>01.007.00</td>
-                        <td>ATIVO</td>
-                        <td>MATERIAIS DE CONSTRUÇÃO E CONGÊNERES</td>
-                        <td>18%</td>
-                        <td>43,00%</td>
-                        <td>42.563/2015</td>
-                        <td>Juntas, gaxetas e outros elementos com função semelhante de vedação</td>
-                    </tr>
+                <tbody id="listarNCMS">
                 </tbody>
             </table>
         </div>
@@ -219,8 +199,10 @@
         </div>
     </span>
     <!-- /Janela Modal -->
-
+    <script src="menus.js"></script>
+    <script src="listarNCMS.js"></script>
     <script src="enviar_aquivos.js"></script>
+    <script src="calculo.js"></script>
 
     <script script_NotaFiscal>
         function MostrarProdutos(event) {
@@ -232,93 +214,6 @@
             const calculo = event.target.closest('tr').nextElementSibling;
             if(calculo.style.display === 'none'){calculo.style.display = ''; return};
             calculo.style.display = 'none';
-        }
-    </script>
-
-    <script>
-        function navBOTOES(botao){
-            if (botao == "XML"){
-                document.getElementById("overlay").style.display = 'flex';
-                document.getElementById("modal-xml").style.display = '';
-            }
-            if(botao == "NCM"){
-                document.getElementById("menu-ncm").style.display = (document.getElementById("menu-ncm").style.display == 'none')? '': 'none';
-            }
-            if (botao == "DECRETO"){
-                document.getElementById("overlay").style.display = 'flex';
-                document.getElementById("modal-decretos").style.display = '';
-            }
-        }
-
-        function MenuNCM(option){
-            document.getElementById("overlay").style.display = 'flex';
-            if (option == "CADASTRAR"){
-                 document.getElementById("modal-cadastrar-ncm").style.display = '';
-                 document.getElementById("modal-ncm-tabela").style.display = 'none';
-            }else if (option == "PESQUISAR"){
-                document.getElementById("modal-ncm-tabela").style.display = '';
-                document.getElementById("modal-cadastrar-ncm").style.display = 'none';
-            }   
-        }
-
-        function mostrarItens(lista){
-            const segmento = document.getElementById("segmentos");
-            const decreto = document.getElementById("decretos");
-            const status = document.getElementById("status");
-            const observacao = document.getElementById("observacao");
-
-            if(lista == 'SEGMENTO'){
-                segmento.style.display = 'flex';
-                decreto.style.display = 'none';
-                status.style.display = 'none';
-                observacao.style.display = 'none';
-                selecionarOpcao(segmento, document.getElementById('SEGMENTO'));
-            }else if (lista == 'DECRETO'){
-                segmento.style.display = 'none';
-                decreto.style.display = 'flex';
-                status.style.display = 'none';
-                observacao.style.display = 'none';
-                selecionarOpcao(decreto, document.getElementById('DECRETO'));
-            }else if (lista == 'STATUS'){
-                segmento.style.display = 'none';
-                decreto.style.display = 'none';
-                status.style.display = 'flex';
-                observacao.style.display = 'none';
-                selecionarOpcao(status, document.getElementById('STATUS'));
-            }else if(lista == 'OBSERVACAO'){
-                segmento.style.display = 'none';
-                decreto.style.display = 'none';
-                status.style.display = 'none';
-                observacao.style.display = '';
-            }
-            else{
-                segmento.style.display = 'none';
-                decreto.style.display = 'none';
-                status.style.display = 'none';
-            }
-
-            function selecionarOpcao(ul, input){
-                ul.addEventListener('click', (event)=>{
-                    if(event.target.tagName === 'LI'){
-                        input.value = event.target.innerHTML;
-                    }
-                })
-            }
-
-            document.getElementById("observacao").addEventListener('input', (event)=>{
-                document.getElementById("OBSERVACAO").value = event.target.value;
-            });
-            document.getElementById("OBSERVACAO").addEventListener('input', (event)=>{
-                document.getElementById("observacao").value = event.target.value;
-            });
-        }
-
-        function fecharOverlay(){
-            document.getElementById("overlay").style.display = 'none';
-            document.getElementById("modal-xml").style.display = 'none';
-            document.getElementById("modal-cadastrar-ncm").style.display = 'none';
-            document.getElementById("modal-ncm-tabela").style.display = 'none';
-            document.getElementById("modal-decretos").style.display = 'none';
         }
     </script>
 </body>

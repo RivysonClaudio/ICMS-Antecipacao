@@ -65,7 +65,7 @@ function informacoesDaEmpresa(nota){
         let newCell = document.createElement('td');
         if(i === 0){newCell.innerHTML = nota.dest.RAZAO_SOCIAL;}
         if(i === 1){newCell.innerHTML = formatoCNPJ(nota.dest.CNPJ);}
-        if(i === 2){newCell.innerHTML = ""}
+        if(i === 2){newCell.innerHTML = nota.dest.IE}
         if(i === 3){newCell.innerHTML = nota.dest.UF}
         document.getElementById('info-dest').appendChild(newCell);
     }
@@ -176,7 +176,8 @@ function HTML_STRUCT_PRODUTO(produto, NF, CNPJ){
         <td>${produto.vSeg}</td>
         <td>${produto.vOutro}</td>
         <td>${produto.vDesc}</td>
-        <td style="display: none;">${produto.pICMS}</td>
+        <td style="display: none;">${produto.ICMS[0]}</td>
+        <td style="display: none;">${produto.ICMS[1]}</td>
         <td>
             <select name="TIPO-CALCULO" id="TIPO-CALCULO" onchange="calcular(this.value, 'NI${produto.nItem}NF${NF+CNPJ}', 'NI${produto.nItem}NF${NF+CNPJ}CALC' )">
                 <option value="0">S.T.</option>
@@ -261,19 +262,22 @@ function formatoCNPJ(CNPJ){
 }
 
 function calcular(value, ID_ITEM, ID_ITEM_CALC){
-    CALCULO_ANTECIPACAO_DIFAL(ID_ITEM, value);
+    CALCULO_ANTECIPACAO_DIFAL(ID_ITEM, ID_ITEM_CALC, value);
 }
 
-function CALCULO_ANTECIPACAO_DIFAL(ID_ITEM, TIPO){
+function CALCULO_ANTECIPACAO_DIFAL(ID_ITEM, ID_ITEM_CALC, TIPO){
     const ITEM = document.getElementById(ID_ITEM).children;
 
     const VALOR_PRODUTO = parseFloat(ITEM[6].textContent);
-    const IPI = parseFloat(ITEM[7].textContent);
-    const FRETE = parseFloat(ITEM[8].textContent);
-    const SEGURO = parseFloat(ITEM[9].textContent);
-    const OUTRAS_DESPESAS = parseFloat(ITEM[10].textContent);
-    const DESCONTO = parseFloat(ITEM[11].textContent);
-    const AL_ICMS = parseFloat(ITEM[12].textContent);
+    const IPI = isNaN(parseFloat(ITEM[7].textContent))? 0: parseFloat(ITEM[7].textContent);
+    const FRETE = isNaN(parseFloat(ITEM[8].textContent))? 0: parseFloat(ITEM[8].textContent);
+    const SEGURO = isNaN(parseFloat(ITEM[9].textContent))? 0: parseFloat(ITEM[9].textContent);
+    const OUTRAS_DESPESAS = isNaN(parseFloat(ITEM[10].textContent))? 0: parseFloat(ITEM[10].textContent);
+    const DESCONTO = isNaN(parseFloat(ITEM[11].textContent))? 0: parseFloat(ITEM[11].textContent);
+    const ICMS_AL = isNaN(parseFloat(ITEM[12].textContent))? 0: parseFloat(ITEM[12].textContent);
+    const ICMS_ORIGEM = isNaN(parseFloat(ITEM[13].textContent))? 0: parseFloat(ITEM[13].textContent);
 
-    console.log(`${VALOR_PRODUTO} + ${IPI} + ${FRETE} + ${SEGURO} + ${OUTRAS_DESPESAS} + ${DESCONTO} + ${AL_ICMS}`);
+    if (TIPO == 1){
+        document.getElementById(ID_ITEM_CALC).innerHTML = AntecipacaoTributaria(VALOR_PRODUTO, IPI, FRETE, SEGURO, OUTRAS_DESPESAS, DESCONTO, ICMS_AL, ICMS_ORIGEM);
+    }
 }

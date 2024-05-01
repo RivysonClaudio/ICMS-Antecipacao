@@ -22,7 +22,8 @@ class NotaFiscal
         $this->dest = array(
             "CNPJ" => (string)$xml->NFe->infNFe->dest->CNPJ,
             "RAZAO_SOCIAL" => (string)$xml->NFe->infNFe->dest->xNome,
-            "UF" => (string)$xml->NFe->infNFe->dest->enderDest->UF
+            "UF" => (string)$xml->NFe->infNFe->dest->enderDest->UF,
+            "IE" => (string)$xml->NFe->infNFe->dest->IE
         );
 
         foreach($xml->NFe->infNFe->det as $item){

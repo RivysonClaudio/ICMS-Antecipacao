@@ -15,7 +15,7 @@ class Produto
     var $vOutro;
     var $vDesc;
 
-    var $pICMS;
+    var $ICMS = [];
 
     public function __construct($produto){
         $this->nItem = (string)$produto->attributes()->nItem;
@@ -31,6 +31,7 @@ class Produto
         $this->vDesc = (string)$produto->prod->vDesc;
 
         $this->vIPI = !is_null($produto->imposto->IPI->IPITrib) ? (string)$produto->imposto->IPI->IPITrib->vIPI : "";
-        $this->pICMS = ((string)$produto->imposto->ICMS->ICMS10->pICMS) != "" ? (string)$produto->imposto->ICMS->ICMS10->pICMS: (string)$produto->imposto->ICMS->ICMS00->pICMS;
+        $this->ICMS[] = (string)$produto->imposto->ICMS->children()[0]->pICMS;
+        $this->ICMS[] = (string)$produto->imposto->ICMS->children()[0]->vICMS;
     }
 }
