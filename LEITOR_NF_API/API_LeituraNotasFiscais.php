@@ -25,10 +25,12 @@ if ($zip->open($zipFilePath) === true) {
 
         $xml = simplexml_load_file($tempFilePath);
 
-        $notaFiscal = new NotaFiscal($xml);
+        if(!is_null($xml->NFe->infNFe)){
+            $notaFiscal = new NotaFiscal($xml);
         
-        if($notaFiscal->emit['UF'] != 'PE'){
-            $notasFiscais[] = $notaFiscal;
+            if($notaFiscal->emit['UF'] != $notaFiscal->dest['UF']){
+                $notasFiscais[] = $notaFiscal;
+            }
         }
 
         unlink($tempFilePath);

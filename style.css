@@ -23,7 +23,10 @@
         align-items: center;
         flex-direction: column;
     }
-    .container{
+    #container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         width: 100%;
     }
 
@@ -45,13 +48,17 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         margin-bottom: 50px;
+        max-width: 85%;
+        min-width: 85%;
     }
     .NotaFiscal-Resumo{
         background-color: #2975c0;
         border-radius: 5px;
         overflow: hidden;
         border-spacing: 10px;
+        width: 100%;
     }
     .NotaFiscal-Resumo th,td{
         padding: 5px;
@@ -86,6 +93,7 @@
     }
     .NotaFiscal-Calculo{
         margin-top: 15px;
+        width: 100%;
     }
     .NotaFiscal-Calculo table{
         width: 100%;
@@ -136,33 +144,33 @@
     }
 
 /* MENU SECUNDÁRIO */
-#menu-ncm{
-    margin-top: 0px;
-    background-color: #2975c2;
-    position: absolute;
-    top: 10vh;
-    right: 0;
-    width: 200px;
-    margin-right: 30px;
-    border-radius: 0px 0px 5px 5px;
-}
-#menu-ncm li{
-    text-align: center;
-    background-color: #044482;
-    margin: 10px;
-    padding: 10px;
-    color: white;
-    font-weight: 550;
-    border-radius: 5px;
-}
-#menu-ncm li:hover{
-    cursor: pointer;
-}
+    #menu-ncm{
+        margin-top: 0px;
+        background-color: #2975c2;
+        position: absolute;
+        top: 10vh;
+        right: 0;
+        width: 200px;
+        margin-right: 30px;
+        border-radius: 0px 0px 5px 5px;
+    }
+    #menu-ncm li{
+        text-align: center;
+        background-color: #044482;
+        margin: 10px;
+        padding: 10px;
+        color: white;
+        font-weight: 550;
+        border-radius: 5px;
+    }
+    #menu-ncm li:hover{
+        cursor: pointer;
+    }
 
 /* MODALS */
     #overlay{
         position: absolute;
-        background-color: rgba(0, 0, 0, 0.300);
+        background-color: rgba(0, 0, 0, 0.5);
         top: 0;
         width: 100%;
         height: 100%;
@@ -276,6 +284,10 @@
     }
     .ncm-tabela{
         position: relative;
+        width: 100%;
+    }
+    .ncm-tabela tbody{
+        overflow: auto;
     }
     .ncm-tabela th{
         background-color: #afd7ff;
@@ -350,4 +362,11 @@
     #decretos-lista td:hover{
         cursor: pointer;
         background-color: #afd7ff;
+    }
+    .controls-NCM-table{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .controls-NCM-table span{
+        cursor: pointer;
     }

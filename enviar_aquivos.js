@@ -58,6 +58,8 @@ function mostrarNotasFiscais(request_answer, container){
     request_answer.forEach(NF => {
         container.innerHTML += HTML_STRUCT(NF);
     });
+
+    leitura_de_ncm();
 }
 
 function informacoesDaEmpresa(nota){
@@ -179,9 +181,9 @@ function HTML_STRUCT_PRODUTO(produto, NF, CNPJ){
         <td style="display: none;">${produto.ICMS[0]}</td>
         <td style="display: none;">${produto.ICMS[1]}</td>
         <td>
-            <select name="TIPO-CALCULO" id="TIPO-CALCULO" onchange="calcular(this.value, 'NI${produto.nItem}NF${NF+CNPJ}', 'NI${produto.nItem}NF${NF+CNPJ}CALC' )">
+            <select name="TIPO-CALCULO" id="TIPO-CALCULO" onchange="calcular(this.value, 'NI${produto.nItem}NF${NF+CNPJ}', 'NI${produto.nItem}NF${NF+CNPJ}CALC')">
                 <option value="0">S.T.</option>
-                <option value="1">Antec. Trib.</option>
+                <option value="1" selected>Antec. Trib.</option>
                 <option value="2">Dif. Al.</option>
             </select>
         </td>
@@ -262,22 +264,49 @@ function formatoCNPJ(CNPJ){
 }
 
 function calcular(value, ID_ITEM, ID_ITEM_CALC){
-    CALCULO_ANTECIPACAO_DIFAL(ID_ITEM, ID_ITEM_CALC, value);
+    CALCULO_ANTECIPACAO_DIFAL_ST(ID_ITEM, ID_ITEM_CALC, value);
 }
 
-function CALCULO_ANTECIPACAO_DIFAL(ID_ITEM, ID_ITEM_CALC, TIPO){
-    const ITEM = document.getElementById(ID_ITEM).children;
-
-    const VALOR_PRODUTO = parseFloat(ITEM[6].textContent);
-    const IPI = isNaN(parseFloat(ITEM[7].textContent))? 0: parseFloat(ITEM[7].textContent);
-    const FRETE = isNaN(parseFloat(ITEM[8].textContent))? 0: parseFloat(ITEM[8].textContent);
-    const SEGURO = isNaN(parseFloat(ITEM[9].textContent))? 0: parseFloat(ITEM[9].textContent);
-    const OUTRAS_DESPESAS = isNaN(parseFloat(ITEM[10].textContent))? 0: parseFloat(ITEM[10].textContent);
-    const DESCONTO = isNaN(parseFloat(ITEM[11].textContent))? 0: parseFloat(ITEM[11].textContent);
-    const ICMS_AL = isNaN(parseFloat(ITEM[12].textContent))? 0: parseFloat(ITEM[12].textContent);
-    const ICMS_ORIGEM = isNaN(parseFloat(ITEM[13].textContent))? 0: parseFloat(ITEM[13].textContent);
-
+function CALCULO_ANTECIPACAO_DIFAL_ST(ID_ITEM, ID_ITEM_CALC, TIPO){
     if (TIPO == 1){
-        document.getElementById(ID_ITEM_CALC).innerHTML = AntecipacaoTributaria(VALOR_PRODUTO, IPI, FRETE, SEGURO, OUTRAS_DESPESAS, DESCONTO, ICMS_AL, ICMS_ORIGEM);
+        document.getElementById(ID_ITEM_CALC).innerHTML = AntecipacaoTributaria(document.getElementById(ID_ITEM).children);
     }
+    if (TIPO == 0){
+        document.getElementById(ID_ITEM_CALC).innerHTML = SubstituicaoTributaria(document.getElementById(ID_ITEM).children, procurarNCM(document.getElementById(ID_ITEM)));
+    }
+}
+
+function leitura_de_ncm(){
+    setTimeout(() => {
+        const ncms_notas = document.querySelectorAll('.table-itens-NotaFiscal');
+    
+        Array.from(ncms_notas).forEach(nota => {
+            Array.from(nota.rows).forEach(row =>{
+                if(row.children[1] != undefined && row.children[1].textContent != 'NCM'){
+                    if(procurarNCM(row) != 0){
+                        document.getElementById(row.id + "CALC").innerHTML = SubstituicaoTributaria(row.children, procurarNCM(row));
+                    }else{
+                        document.getElementById(row.id + "CALC").innerHTML = AntecipacaoTributaria(row.children);
+                    }
+                }
+            })
+        })
+    }, 100);
+}
+
+function procurarNCM(row){
+    const ncms_bd = document.querySelectorAll('#listarNCMS tr');
+    
+    for(let i = 0; i < ncms_bd.length; i++){
+        let ncm = ncms_bd[i];
+        let ncm_procurado = row.children[1].textContent;
+        for(let i = 0; i < 5; i++){
+            if (ncm_procurado == ncm.children[0].textContent && ncm.children[1].textContent == row.children[2].textContent){
+                row.children[14].children[0].value = 0;
+                return [ncm.children[3].textContent, parseFloat(ncm.children[5].textContent)/100, parseFloat(ncm.children[4].textContent)/100];
+            }
+            ncm_procurado = ncm_procurado.slice(0, -1);
+        }
+    }
+    return 0;
 }

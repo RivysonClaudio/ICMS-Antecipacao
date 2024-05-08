@@ -1,0 +1,832 @@
+[
+    {
+        "NCM": "2522",
+        "CEST": "1000100",
+        "SEGMENTO": "10",
+        "MVA": "4300",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 1"
+    },
+    {
+        "NCM": "3816001",
+        "CEST": "1000200",
+        "SEGMENTO": "10",
+        "MVA": "3900",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 2"
+    },
+    {
+        "NCM": "38245000",
+        "CEST": "1000200",
+        "SEGMENTO": "10",
+        "MVA": "3900",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 2"
+    },
+    {
+        "NCM": "32149000",
+        "CEST": "1000300",
+        "SEGMENTO": "10",
+        "MVA": "4100",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 3"
+    },
+    {
+        "NCM": "391000",
+        "CEST": "1000400",
+        "SEGMENTO": "10",
+        "MVA": "5700",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 4"
+    },
+    {
+        "NCM": "3916",
+        "CEST": "1000500",
+        "SEGMENTO": "10",
+        "MVA": "5700",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 5"
+    },
+    {
+        "NCM": "3917",
+        "CEST": "1000600",
+        "SEGMENTO": "10",
+        "MVA": "3600",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 6"
+    },
+    {
+        "NCM": "3918",
+        "CEST": "1000700",
+        "SEGMENTO": "10",
+        "MVA": "5600",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 7"
+    },
+    {
+        "NCM": "3919",
+        "CEST": "1000800",
+        "SEGMENTO": "10",
+        "MVA": "5800",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 8"
+    },
+    {
+        "NCM": "3919",
+        "CEST": "1000900",
+        "SEGMENTO": "10",
+        "MVA": "5200",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 9"
+    },
+    {
+        "NCM": "3920",
+        "CEST": "1000900",
+        "SEGMENTO": "10",
+        "MVA": "5200",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 9"
+    },
+    {
+        "NCM": "3921",
+        "CEST": "1000900",
+        "SEGMENTO": "10",
+        "MVA": "5200",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 9"
+    },
+    {
+        "NCM": "3921",
+        "CEST": "1001000",
+        "SEGMENTO": "10",
+        "MVA": "5300",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 10"
+    },
+    {
+        "NCM": "3921",
+        "CEST": "1001200",
+        "SEGMENTO": "10",
+        "MVA": "5300",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 11"
+    },
+    {
+        "NCM": "3922",
+        "CEST": "1001300",
+        "SEGMENTO": "10",
+        "MVA": "4900",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 12"
+    },
+    {
+        "NCM": "3924",
+        "CEST": "1001400",
+        "SEGMENTO": "10",
+        "MVA": "8000",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 13"
+    },
+    {
+        "NCM": "39251000",
+        "CEST": "1001500",
+        "SEGMENTO": "10",
+        "MVA": "4600",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 14"
+    },
+    {
+        "NCM": "392590",
+        "CEST": "1001600",
+        "SEGMENTO": "10",
+        "MVA": "4600",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 15"
+    },
+    {
+        "NCM": "39252000",
+        "CEST": "1001800",
+        "SEGMENTO": "10",
+        "MVA": "4300",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 16"
+    },
+    {
+        "NCM": "39253000",
+        "CEST": "1001900",
+        "SEGMENTO": "10",
+        "MVA": "7500",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 17"
+    },
+    {
+        "NCM": "392690",
+        "CEST": "1002000",
+        "SEGMENTO": "10",
+        "MVA": "4500",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 18"
+    },
+    {
+        "NCM": "4814",
+        "CEST": "1002100",
+        "SEGMENTO": "10",
+        "MVA": "7900",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 19"
+    },
+    {
+        "NCM": "68101900",
+        "CEST": "1002200",
+        "SEGMENTO": "10",
+        "MVA": "3600",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 20"
+    },
+    {
+        "NCM": "6811",
+        "CEST": "1002400",
+        "SEGMENTO": "10",
+        "MVA": "4100",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 21"
+    },
+    {
+        "NCM": "6811",
+        "CEST": "1002400",
+        "SEGMENTO": "10",
+        "MVA": "5600",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 22"
+    },
+    {
+        "NCM": "69010000",
+        "CEST": "1002500",
+        "SEGMENTO": "10",
+        "MVA": "10100",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 23"
+    },
+    {
+        "NCM": "6902",
+        "CEST": "1002600",
+        "SEGMENTO": "10",
+        "MVA": "8100",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 24"
+    },
+    {
+        "NCM": "6904",
+        "CEST": "1002700",
+        "SEGMENTO": "10",
+        "MVA": "4000",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 25"
+    },
+    {
+        "NCM": "6904",
+        "CEST": "1002700",
+        "SEGMENTO": "10",
+        "MVA": "7600",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 26"
+    },
+    {
+        "NCM": "6905",
+        "CEST": "1002800",
+        "SEGMENTO": "10",
+        "MVA": "4400",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 27"
+    },
+    {
+        "NCM": "6905",
+        "CEST": "1002800",
+        "SEGMENTO": "10",
+        "MVA": "6900",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 28"
+    },
+    {
+        "NCM": "69060000",
+        "CEST": "1002900",
+        "SEGMENTO": "10",
+        "MVA": "9100",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 29"
+    },
+    {
+        "NCM": "6907",
+        "CEST": "1003000",
+        "SEGMENTO": "10",
+        "MVA": "5300",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 30"
+    },
+    {
+        "NCM": "6908",
+        "CEST": "1003000",
+        "SEGMENTO": "10",
+        "MVA": "5300",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 30"
+    },
+    {
+        "NCM": "6910",
+        "CEST": "1003100",
+        "SEGMENTO": "10",
+        "MVA": "4000",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 31"
+    },
+    {
+        "NCM": "69120000",
+        "CEST": "1003200",
+        "SEGMENTO": "10",
+        "MVA": "8300",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 32"
+    },
+    {
+        "NCM": "7003",
+        "CEST": "1003300",
+        "SEGMENTO": "10",
+        "MVA": "4200",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 33"
+    },
+    {
+        "NCM": "7004",
+        "CEST": "1003400",
+        "SEGMENTO": "10",
+        "MVA": "10100",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 34"
+    },
+    {
+        "NCM": "7005",
+        "CEST": "1003500",
+        "SEGMENTO": "10",
+        "MVA": "4500",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 35"
+    },
+    {
+        "NCM": "70071900",
+        "CEST": "1003600",
+        "SEGMENTO": "10",
+        "MVA": "4400",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 36"
+    },
+    {
+        "NCM": "70072900",
+        "CEST": "1003700",
+        "SEGMENTO": "10",
+        "MVA": "4600",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 37"
+    },
+    {
+        "NCM": "7008",
+        "CEST": "1003800",
+        "SEGMENTO": "10",
+        "MVA": "4600",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 38"
+    },
+    {
+        "NCM": "73089010",
+        "CEST": "1004100",
+        "SEGMENTO": "10",
+        "MVA": "3900",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 39"
+    },
+    {
+        "NCM": "72142000",
+        "CEST": "1004200",
+        "SEGMENTO": "10",
+        "MVA": "4100",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 40"
+    },
+    {
+        "NCM": "72171090",
+        "CEST": "1004400",
+        "SEGMENTO": "10",
+        "MVA": "4400",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 41"
+    },
+    {
+        "NCM": "7312",
+        "CEST": "1004400",
+        "SEGMENTO": "10",
+        "MVA": "4400",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 41"
+    },
+    {
+        "NCM": "72172090",
+        "CEST": "1004500",
+        "SEGMENTO": "10",
+        "MVA": "4200",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 42"
+    },
+    {
+        "NCM": "7307",
+        "CEST": "1004600",
+        "SEGMENTO": "10",
+        "MVA": "3700",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 43"
+    },
+    {
+        "NCM": "73083000",
+        "CEST": "1004700",
+        "SEGMENTO": "10",
+        "MVA": "4000",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 44"
+    },
+    {
+        "NCM": "73084000",
+        "CEST": "1004800",
+        "SEGMENTO": "10",
+        "MVA": "6500",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 45"
+    },
+    {
+        "NCM": "730890",
+        "CEST": "1004800",
+        "SEGMENTO": "10",
+        "MVA": "6500",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 45"
+    },
+    {
+        "NCM": "73084000",
+        "CEST": "1004900",
+        "SEGMENTO": "10",
+        "MVA": "3800",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 46"
+    },
+    {
+        "NCM": "7310",
+        "CEST": "1005100",
+        "SEGMENTO": "10",
+        "MVA": "8900",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 47"
+    },
+    {
+        "NCM": "73130000",
+        "CEST": "1005200",
+        "SEGMENTO": "10",
+        "MVA": "4600",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 48"
+    },
+    {
+        "NCM": "7314",
+        "CEST": "1005300",
+        "SEGMENTO": "10",
+        "MVA": "3900",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 49"
+    },
+    {
+        "NCM": "73151100",
+        "CEST": "1005400",
+        "SEGMENTO": "10",
+        "MVA": "10100",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 50"
+    },
+    {
+        "NCM": "73151290",
+        "CEST": "1005500",
+        "SEGMENTO": "10",
+        "MVA": "10100",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 51"
+    },
+    {
+        "NCM": "73158200",
+        "CEST": "1005600",
+        "SEGMENTO": "10",
+        "MVA": "6800",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 52"
+    },
+    {
+        "NCM": "731700",
+        "CEST": "1005700",
+        "SEGMENTO": "10",
+        "MVA": "4400",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 53"
+    },
+    {
+        "NCM": "7318",
+        "CEST": "1005800",
+        "SEGMENTO": "10",
+        "MVA": "5100",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 54"
+    },
+    {
+        "NCM": "7323",
+        "CEST": "1005900",
+        "SEGMENTO": "10",
+        "MVA": "10100",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 55"
+    },
+    {
+        "NCM": "7324",
+        "CEST": "1006000",
+        "SEGMENTO": "10",
+        "MVA": "6200",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 56"
+    },
+    {
+        "NCM": "7325",
+        "CEST": "1006100",
+        "SEGMENTO": "10",
+        "MVA": "8600",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 57"
+    },
+    {
+        "NCM": "7326",
+        "CEST": "1006200",
+        "SEGMENTO": "10",
+        "MVA": "8000",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 58"
+    },
+    {
+        "NCM": "74111010",
+        "CEST": "1006400",
+        "SEGMENTO": "10",
+        "MVA": "3500",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 59"
+    },
+    {
+        "NCM": "7412",
+        "CEST": "1006500",
+        "SEGMENTO": "10",
+        "MVA": "3300",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 60"
+    },
+    {
+        "NCM": "7415",
+        "CEST": "1006600",
+        "SEGMENTO": "10",
+        "MVA": "6200",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 62"
+    },
+    {
+        "NCM": "74182000",
+        "CEST": "1006700",
+        "SEGMENTO": "10",
+        "MVA": "4600",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 63"
+    },
+    {
+        "NCM": "76071990",
+        "CEST": "1006800",
+        "SEGMENTO": "10",
+        "MVA": "5900",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 64"
+    },
+    {
+        "NCM": "76090000",
+        "CEST": "1007000",
+        "SEGMENTO": "10",
+        "MVA": "6600",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 65"
+    },
+    {
+        "NCM": "7610",
+        "CEST": "1007100",
+        "SEGMENTO": "10",
+        "MVA": "3800",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 66"
+    },
+    {
+        "NCM": "76152000",
+        "CEST": "1007200",
+        "SEGMENTO": "10",
+        "MVA": "7300",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 67"
+    },
+    {
+        "NCM": "7616",
+        "CEST": "1007300",
+        "SEGMENTO": "10",
+        "MVA": "4500",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 68"
+    },
+    {
+        "NCM": "83024100",
+        "CEST": "1007400",
+        "SEGMENTO": "10",
+        "MVA": "4700",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 69"
+    },
+    {
+        "NCM": "8301",
+        "CEST": "1007500",
+        "SEGMENTO": "10",
+        "MVA": "5400",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 70"
+    },
+    {
+        "NCM": "83021000",
+        "CEST": "1007600",
+        "SEGMENTO": "10",
+        "MVA": "5800",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 71"
+    },
+    {
+        "NCM": "8307",
+        "CEST": "1007700",
+        "SEGMENTO": "10",
+        "MVA": "6200",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 72"
+    },
+    {
+        "NCM": "8311",
+        "CEST": "1007800",
+        "SEGMENTO": "10",
+        "MVA": "6000",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 73"
+    },
+    {
+        "NCM": "8481",
+        "CEST": "1007900",
+        "SEGMENTO": "10",
+        "MVA": "4700",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 74"
+    },
+    {
+        "NCM": "4009",
+        "CEST": "0108700",
+        "SEGMENTO": "1",
+        "MVA": "7000",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 75"
+    },
+    {
+        "NCM": "40169300",
+        "CEST": "0100700",
+        "SEGMENTO": "1",
+        "MVA": "7400",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 76"
+    },
+    {
+        "NCM": "7009",
+        "CEST": "2700100",
+        "SEGMENTO": "0",
+        "MVA": "4200",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 77"
+    },
+    {
+        "NCM": "90191000",
+        "CEST": "2107700",
+        "SEGMENTO": "19",
+        "MVA": "4300",
+        "ALIQUOTA": "1800",
+        "DECRETO": "1",
+        "STATUS": "1",
+        "OBS": "Item - 78"
+    }
+]

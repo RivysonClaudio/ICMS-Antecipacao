@@ -20,7 +20,7 @@ function INSERT_NCM($ITEM){
     $conn = GET_CONECTION();
 
     $query = 'INSERT INTO ncms (ncm, cest, segmento, mva, aliquota, decreto, status, observacao)
-                VALUES (\''. $ITEM['NCM'] .'\', \''. $ITEM['CEST'] .'\', \''. $ITEM['SEGMENTO'] .'\', \''. $ITEM['MVA'] .'\', \''. $ITEM['ALIQUOTA'] .'\', \''.$ITEM['DECRETO'] .'\', \''. $ITEM['STATUS'] .'\', \''. $ITEM['DESCRICAO'] .'\');';
+                VALUES (\''. $ITEM['NCM'] .'\', \''. $ITEM['CEST'] .'\', \''. $ITEM['SEGMENTO'] .'\', \''. $ITEM['MVA'] .'\', \''. $ITEM['ALIQUOTA'] .'\', \''.$ITEM['DECRETO'] .'\', \''. $ITEM['STATUS'] .'\', \''. $ITEM['OBS'] .'\');';
 
     mysqli_query($conn, $query);
 
@@ -30,11 +30,12 @@ function INSERT_NCM($ITEM){
 function GET_NCMS(){
     $conn = GET_CONECTION();
 
-    $query = 'SELECT * FROM ncms;';
+    $query = '  SELECT ncms.*, segmento.segmento AS segmento_nome, decreto.decreto AS decreto_nome
+                FROM ncms 
+                JOIN segmento ON ncms.segmento = segmento.cod
+                JOIN decreto ON ncms.decreto = decreto.id;';
 
     $sql = mysqli_query($conn, $query);
-
-    mysqli_close($conn);
 
     if($sql){
         while($row = mysqli_fetch_assoc($sql)){
@@ -42,12 +43,35 @@ function GET_NCMS(){
                 'id' => $row['id'],
                 'ncm' => $row['ncm'],
                 'cest' => $row['cest'],
-                'seg' => $row['segmento'],
+                'seg' => $row['segmento_nome'],
                 'mva' => $row['mva'],
                 'al' => $row['aliquota'],
-                'dec' => $row['decreto'],
+                'dec' => $row['decreto_nome'],
                 'sts' => $row['status'],
                 'obs' => $row['observacao']
+            ];
+        }
+
+        mysqli_free_result($sql);
+
+        mysqli_close($conn);
+
+        return json_encode($rows);  
+    }
+}
+
+function GET_SEGMENTOS(){
+    $conn = GET_CONECTION();
+
+    $query = 'SELECT * FROM segmento';
+
+    $sql = mysqli_query($conn, $query);
+
+    if($sql){
+        while($row = mysqli_fetch_assoc($sql)){
+            $rows[] = [
+                'id' => $row['cod'],
+                'seg' => $row['segmento']
             ];
         }
 
@@ -66,8 +90,6 @@ function GET_DECRETOS(){
 
     $sql = mysqli_query($conn, $query);
 
-    mysqli_close($conn);
-
     if($sql){
         while($row = mysqli_fetch_assoc($sql)){
             $rows[] = [
@@ -83,5 +105,3 @@ function GET_DECRETOS(){
         return json_encode($rows);  
     }
 }
-
-print_r(GET_DECRETOS());

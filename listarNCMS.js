@@ -1,0 +1,85 @@
+const NCM_form = document.getElementById('ncm-form');
+
+NCM_form.addEventListener('submit', sendNCM, false);
+
+const NCMS = document.getElementById('listarNCMS');
+
+if(NCMS.textContent == ""){
+    chamarListaNCM(NCMS);
+}
+
+const SEGMENTOS = document.getElementById('segmentos');
+
+if(SEGMENTOS.textContent == ""){
+    chamarSegmentos(SEGMENTOS);
+}
+
+function sendNCM(event){
+    let formData, ajax;
+
+    formData = new FormData(event.target);
+
+    ajax = new XMLHttpRequest();
+
+    ajax.onreadystatechange = () =>{
+        if (ajax.status === 200 && ajax.readyState === 4){
+            NCM_form.reset();
+            console.log(ajax.response)
+        }
+    }
+
+    ajax.open("POST", "CONEXAO_DB/set_ncm.php");
+    ajax.send(formData);
+}
+
+function chamarListaNCM(NCM_TABLE){
+    let ajax = new XMLHttpRequest();
+    
+    ajax.onreadystatechange = () => {
+        if (ajax.status == 200 && ajax.readyState == 4){
+            const Lista_de_NCM = ajax.response;
+
+            Lista_de_NCM.forEach(NCM => {
+                const tr = document.createElement('tr');
+                tr.id = NCM['id'];
+                const content = `   <td>${NCM['ncm']}</td>
+                                    <td>${NCM['cest']}</td>
+                                    <td>${NCM['sts'] == '1'? 'ATIVO': 'INATIVO'}</td>
+                                    <td>${String(NCM['seg']).toUpperCase()}</td>
+                                    <td>${NCM['al']}</td>
+                                    <td>${NCM['mva']}</td>
+                                    <td>${NCM['dec']}</td>
+                                    <td>${NCM['obs']}</td>
+                                    <td>
+                                        <div class="controls-NCM-table">
+                                            <span class="material-symbols-outlined" title="Editar NCM">edit</span>
+                                            <span class="material-symbols-outlined" style="color: red" title="Deletar NCM">delete</span>
+                                        </div>
+                                    </td>
+                                `;
+                tr.innerHTML = content;
+                NCM_TABLE.appendChild(tr);
+            });
+        }
+    }
+
+    ajax.open("GET", "CONEXAO_DB/get_NCMS.php");
+    ajax.responseType = "json";
+    ajax.send();
+}
+
+function chamarSegmentos(SEGMENTOS_LISTA){
+    let ajax = new XMLHttpRequest();
+    
+    ajax.onreadystatechange = () => {
+        if (ajax.status == 200 && ajax.readyState == 4){
+            ajax.response.forEach(SEGMENTO => {
+                SEGMENTOS_LISTA.innerHTML += `<li id="${SEGMENTO['id']}">${SEGMENTO['seg'].toUpperCase()}</li>`;
+            });
+        }
+    }
+
+    ajax.open("GET", "CONEXAO_DB/get_segmentos.php");
+    ajax.responseType = "json";
+    ajax.send();
+}

@@ -52,9 +52,7 @@
             </tbody>
         </table>
         <h5 style="margin: 10px;">Data do calculo: 19/04/2024</h5>
-        <div id="container">
-            
-        </div>
+        <div id="container"></div>
     </main>
 
     <!-- NCM OPTIONS -->
@@ -94,17 +92,17 @@
             </section>
         </div>
         <div id="modal-cadastrar-ncm" onclick="event.stopPropagation()" style="display: none;">
-            <form action="">
+            <form action="javascript: void(0)" id="ncm-form">
                 <label for="NCM">NCM</label>
-                <input type="text" name="NCM">
+                <input id="NCM" type="text" name="NCM">
                 <label for="CEST">CEST</label>
-                <input type="text" name="CEST">
+                <input id="CEST" type="text" name="CEST">
                 <label for="SEGMENTO">SEGMENTO</label>
                 <input id="SEGMENTO" type="search" name="SEGMENTO" onfocus="mostrarItens('SEGMENTO')" readonly>
                 <label for="MVA">MVA ORIGINAL</label>
-                <input type="text" name="MVA">
+                <input id="MVA" type="text" name="MVA">
                 <label for="ALIQUOTA">ALIQUOTA</label>
-                <input type="text" name="ALIQUOTA">
+                <input id="ALIQUOTA" type="text" name="ALIQUOTA">
                 <label for="DECRETO">DECRETO</label>
                 <input id="DECRETO" type="search" name="DECRETO" onfocus="mostrarItens('DECRETO')" readonly>
                 <label for="STATUS">STATUS</label>
@@ -114,23 +112,7 @@
                 <input id="SALVAR-NCM" type="submit" value="SALVAR">
             </form>
             <div id="menu-search">
-                <ul id="segmentos" style="display: none;">
-                    <li>AUTOPEÇAS</li>
-                    <li>BEBIDAS ALCOÓLICAS, EXCETO CERVEJA E CHOPE</li>
-                    <li>CERVEJAS, CHOPES, REFRIGERANTES, ÁGUAS E OUTRAS BEBIDAS</li>
-                    <li>CIGARROS E OUTROS PRODUTOS DERIVADOS DO FUMO</li>
-                    <li>CIMENTOS</li>
-                    <li>COMBUSTÍVEIS E LUBRIFICANTES</li>
-                    <li>ENERGIA ELÉTRICA</li>
-                    <li>FERRAMENTAS</li>
-                    <li>LÂMPADAS, REATORES E “STARTER”</li>
-                    <li>MATERIAIS DE CONSTRUÇÃO E CONGÊNERES</li>
-                    <li>MATERIAIS DE LIMPEZA</li>
-                    <li>MATERIAIS ELÉTRICOS</li>
-                    <li>MEDICAMENTOS DE USO HUMANO E OUTROS PRODUTOS FARMACÊUTICOS PARA USO HUMANO OU VETERINÁRIO</li>
-                    <li>PAPÉIS, PLÁSTICOS, PRODUTOS CERÂMICOS E VIDROS</li>
-                    <li>PNEUMÁTICOS, CÂMARAS DE AR E PROTETORES DE BORRACHA</li>
-                </ul>
+                <ul id="segmentos" style="display: none;"></ul>
                 <ul id="decretos" style="display: none;">
                     <li>DECRETO Nº 42.563/2015</li>
                 </ul>
@@ -153,10 +135,10 @@
                         <th>MVA</th>
                         <th>DECRETO</th>
                         <th>OBSERVAÇÃO</th>
+                        <th>OPÇÕES</th>
                     </tr>
                 </thead>
-                <tbody id="listarNCMS">
-                </tbody>
+                <tbody id="listarNCMS"></tbody>
             </table>
         </div>
         <div id="modal-decretos" onclick="event.stopPropagation()" style="display: none;">

@@ -1,5 +1,6 @@
 function navBOTOES(botao){
     if (botao == "XML"){
+        document.body.style.overflow = "hidden";
         document.getElementById("overlay").style.display = 'flex';
         document.getElementById("modal-xml").style.display = '';
     }
@@ -9,6 +10,7 @@ function navBOTOES(botao){
     if (botao == "DECRETO"){
         document.getElementById("overlay").style.display = 'flex';
         document.getElementById("modal-decretos").style.display = '';
+        document.body.style.overflow = "hidden";
     }
 }
 
@@ -17,9 +19,11 @@ function MenuNCM(option){
     if (option == "CADASTRAR"){
          document.getElementById("modal-cadastrar-ncm").style.display = '';
          document.getElementById("modal-ncm-tabela").style.display = 'none';
+         document.body.style.overflow = "hidden";
     }else if (option == "PESQUISAR"){
         document.getElementById("modal-ncm-tabela").style.display = '';
         document.getElementById("modal-cadastrar-ncm").style.display = 'none';
+        document.body.style.overflow = "hidden";
     }   
 }
 
@@ -76,6 +80,7 @@ function mostrarItens(lista){
 }
 
 function fecharOverlay(){
+    document.body.style.overflow = 'auto';
     document.getElementById("overlay").style.display = 'none';
     document.getElementById("modal-xml").style.display = 'none';
     document.getElementById("modal-cadastrar-ncm").style.display = 'none';
