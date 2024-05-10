@@ -1,4 +1,4 @@
-const ALIQUOTA_INTERNA_ICMS = 18;
+const ALIQUOTA_INTERNA_ICMS = 20.5;
 
 function AntecipacaoTributaria(row){
     const ITEM = infoITEM(row);
@@ -15,6 +15,13 @@ function SubstituicaoTributaria(row, arrayDadosST){
     const VALOR_OPERACAO = ITEM['VALOR DO PRODUTO'] + ITEM['IPI'] + ITEM['FRETE'] + ITEM['SEGURO'] + ITEM['OUTRAS'] - ITEM['DESCONTO'];
 
     return HTML_STRUCT_CALCULO_ST(arrayDadosST[0], VALOR_OPERACAO, ITEM['ALIQUOTA ICMS'], ITEM['VALOR ICMS NF'], arrayDadosST[1], arrayDadosST[2], ITEM['VALOR DO PRODUTO']);
+}
+
+function DiferencialEntreAliquotas(row){
+    const ITEM = infoITEM(row);
+    const VALOR_OPERACAO = ITEM['VALOR DO PRODUTO'] + ITEM['IPI'] + ITEM['FRETE'] + ITEM['SEGURO'] + ITEM['OUTRAS'] - ITEM['DESCONTO'];
+
+    return HTML_STRUCT_CALCULO_DIFAL(VALOR_OPERACAO, ITEM['ALIQUOTA ICMS'], ITEM['VALOR ICMS NF'], ALIQUOTA_INTERNA_ICMS);
 }
 
 function mva_ajustado(mva, al_inter, al_intra){
@@ -82,6 +89,35 @@ function HTML_STRUCT_CALCULO_ST(SEGMENTO, BASE_CALCULO, ICMS_AL, ICMS_ORIGEM, MV
             <td>${ALIQUOTA_INTERNA.toFixed(2)}</td>
             <td>${0}</td>
             <td>${((BASE_CALCULO * mva_ajustado(MVA, ALIQUOTA_INTERNA, ICMS_AL))*(ALIQUOTA_INTERNA/100) - (VALOR_PRODUTO*(ICMS_AL/100))).toFixed(2)}</td>
+        </tr>
+    </table>
+    `;
+    
+    return STRUCT;
+}
+
+function HTML_STRUCT_CALCULO_DIFAL(VALOR_OPERACAO, ICMS_AL, ICMS_ORIGEM, ALIQUOTA_INTERNA_ICMS){
+    const STRUCT = `
+    <table class="calculo-ICMS">
+        <thead>
+            <th>VALOR OPERAÇÃO</th>
+            <th>ALIQ. INTERESTADUAL</th>
+            <th>ICMS NORMAL</th>
+            <th>B.C. ICMS NORMAL</th>
+            <th>ALIQ. INTERNA</th>
+            <th>B.C. ICMS ANTECIP.</th>
+            <th>DIF. ALIQ.</th>
+            <th>ICMS ANT.</th>
+        </thead>
+        <tr>
+            <td>${VALOR_OPERACAO.toFixed(2)}</td>
+            <td>${ICMS_AL}%</td>
+            <td>${ICMS_ORIGEM.toFixed(2)}</td>
+            <td>${(VALOR_OPERACAO - ICMS_ORIGEM).toFixed(2)}</td>
+            <td>${ALIQUOTA_INTERNA_ICMS.toFixed(2)}%</td>
+            <td>${(((VALOR_OPERACAO - ICMS_ORIGEM) / (100 - ALIQUOTA_INTERNA_ICMS))*100).toFixed(2)}</td>
+            <td>${Math.abs(ALIQUOTA_INTERNA_ICMS - ICMS_AL).toFixed(2)}%</td>
+            <td>${((VALOR_OPERACAO - ICMS_ORIGEM) * (Math.abs(ALIQUOTA_INTERNA_ICMS - ICMS_AL)/100)).toFixed(2)}</td>
         </tr>
     </table>
     `;

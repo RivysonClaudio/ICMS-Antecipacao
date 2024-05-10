@@ -274,6 +274,9 @@ function CALCULO_ANTECIPACAO_DIFAL_ST(ID_ITEM, ID_ITEM_CALC, TIPO){
     if (TIPO == 0){
         document.getElementById(ID_ITEM_CALC).innerHTML = SubstituicaoTributaria(document.getElementById(ID_ITEM).children, procurarNCM(document.getElementById(ID_ITEM)));
     }
+    if(TIPO == 2){
+        document.getElementById(ID_ITEM_CALC).innerHTML = DiferencialEntreAliquotas(document.getElementById(ID_ITEM).children);
+    }
 }
 
 function leitura_de_ncm(){
