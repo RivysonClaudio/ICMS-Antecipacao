@@ -25,26 +25,26 @@ function HTML_STRUCT_CALCULO_AT(BASE_CALCULO_AT, ICMS_AL, ICMS_ORIGEM, ALIQUOTA_
     const STRUCT = `
     <table class="calculo-ICMS">
         <thead>
-            <th>BASE DE CALCULO<br>ICMS NORMAL</th>
-            <th>REDUÇÃO<br>BASE DE CALCULO</th>
+            <th>B.C. ICMS NORMAL</th>
+            <th>REDUÇÃO B.C.</th>
             <th>BASE REDUZIDA</th>
-            <th>ALIQUOTA<br>ICMS NORMAL</th>
-            <th>VALOR<br>ICMS NORMAL</th>
+            <th>ALIQ. INTERESTADUAL</th>
+            <th>ICMS NORMAL</th>
             <th>MVA</th>
-            <th>ALIQUOTA INTERNA</th>
-            <th>ALIQUOTA REDUZIDA<br>SN</th>
-            <th>VALOR<br>ICMS ST</th>
+            <th>ALIQ. INTERNA</th>
+            <th>ALIQ. RED. SN</th>
+            <th>ICMS ANT.</th>
         </thead>
         <tr>
-            <td>${BASE_CALCULO_AT}</td>
+            <td>${BASE_CALCULO_AT.toFixed(2)}</td>
             <td>${0}</td>
-            <td>${BASE_CALCULO_AT}</td>
-            <td>${ICMS_AL}</td>
+            <td>${BASE_CALCULO_AT.toFixed(2)}</td>
+            <td>${ICMS_AL}%</td>
             <td>${ICMS_ORIGEM}</td>
             <td>${0}</td>
-            <td>${ALIQUOTA_INTERNA_ICMS}</td>
+            <td>${ALIQUOTA_INTERNA_ICMS.toFixed(2)}%</td>
             <td>${0}</td>
-            <td>${ICMS_AT}</td>
+            <td>${ICMS_AT.toFixed(2)}</td>
         </tr>
     </table>
     `;
@@ -74,7 +74,7 @@ function HTML_STRUCT_CALCULO_ST(SEGMENTO, BASE_CALCULO, ICMS_AL, ICMS_ORIGEM, MV
             <td>${BASE_CALCULO.toFixed(2)}</td>
             <td>${0}</td>
             <td>${BASE_CALCULO.toFixed(2)}</td>
-            <td>${ICMS_AL}</td>
+            <td>${ICMS_AL}%</td>
             <td>${ICMS_ORIGEM}</td>
             <td>${MVA}%</td>
             <td>${((mva_ajustado(MVA, ALIQUOTA_INTERNA, ICMS_AL)-1)*100).toFixed(2)}%</td>
