@@ -57,31 +57,31 @@ function HTML_STRUCT_CALCULO_ST(SEGMENTO, BASE_CALCULO, ICMS_AL, ICMS_ORIGEM, MV
     <table class="calculo-ICMS">
         <thead>
             <th>SEGMENTO</th>
-            <th>BASE DE CALCULO<br>ICMS NORMAL</th>
-            <th>REDUÇÃO<br>BASE DE CALCULO</th>
+            <th>BASE DE CALCULO</th>
+            <th>REDUÇÃO B.C.</th>
             <th>BASE REDUZIDA</th>
-            <th>ALIQUOTA<br>ICMS NORMAL</th>
-            <th>VALOR<br>ICMS NORMAL</th>
+            <th>ALIQ. INTERESTADUAL</th>
+            <th>ICMS NORMAL</th>
             <th>MVA</th>
             <th>MVA AJUSTADO</th>
-            <th>BASE DE CALCULO<br>ICMS ST</th>
-            <th>ALIQUOTA INTERNA</th>
-            <th>ALIQUOTA REDUZIDA<br>SN</th>
-            <th>VALOR<br>ICMS ST</th>
+            <th>B.C. ICMS ST</th>
+            <th>ALIQ. INTERNA</th>
+            <th>ALIQ. REDU. SN</th>
+            <th>ICMS ST</th>
         </thead>
         <tr>
             <td>${SEGMENTO}</td>
-            <td>${BASE_CALCULO}</td>
+            <td>${BASE_CALCULO.toFixed(2)}</td>
             <td>${0}</td>
-            <td>${BASE_CALCULO}</td>
+            <td>${BASE_CALCULO.toFixed(2)}</td>
             <td>${ICMS_AL}</td>
             <td>${ICMS_ORIGEM}</td>
-            <td>${MVA}</td>
-            <td>${mva_ajustado(MVA, ALIQUOTA_INTERNA, ICMS_AL)}</td>
-            <td>${BASE_CALCULO * mva_ajustado(MVA, ALIQUOTA_INTERNA, ICMS_AL)}</td>
-            <td>${ALIQUOTA_INTERNA}</td>
+            <td>${MVA}%</td>
+            <td>${((mva_ajustado(MVA, ALIQUOTA_INTERNA, ICMS_AL)-1)*100).toFixed(2)}%</td>
+            <td>${(BASE_CALCULO * mva_ajustado(MVA, ALIQUOTA_INTERNA, ICMS_AL)).toFixed(2)}</td>
+            <td>${ALIQUOTA_INTERNA.toFixed(2)}</td>
             <td>${0}</td>
-            <td>${(BASE_CALCULO * mva_ajustado(MVA, ALIQUOTA_INTERNA, ICMS_AL))*(ALIQUOTA_INTERNA/100) - (VALOR_PRODUTO*(ICMS_AL/100))}</td>
+            <td>${((BASE_CALCULO * mva_ajustado(MVA, ALIQUOTA_INTERNA, ICMS_AL))*(ALIQUOTA_INTERNA/100) - (VALOR_PRODUTO*(ICMS_AL/100))).toFixed(2)}</td>
         </tr>
     </table>
     `;
