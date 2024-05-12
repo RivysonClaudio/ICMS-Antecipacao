@@ -24,14 +24,14 @@ function sendForm(event){
     ajax.onreadystatechange = () => {
         if (ajax.status == 200 && ajax.readyState == 4){
             form.reset();
-
+            console.log(ajax.response);
             if (ajax.response == 'Arquivos carregados com sucesso!'){
                 RequisicaoJSON();
             }
         }
     }
 
-    ajax.open("POST", "LEITOR_NF_API/API_RecebimentoNotasFiscais.php");
+    ajax.open("POST", "API/POST/NOTAFISCAL/");
     ajax.send(formData);
 }
 
@@ -47,13 +47,35 @@ function RequisicaoJSON(){
         }
     }
 
-    ajax.open("GET", "LEITOR_NF_API/API_LeituraNotasFiscais.php");
+    ajax.open("GET", "API/GET/NOTAFISCAL/");
+    ajax.responseType = "json";
+    ajax.send();
+}
+
+function verificarSeOClienteEstaNaBaseDeDados(CNPJ){
+    let ajax = new XMLHttpRequest();
+    
+    ajax.onreadystatechange = () => {
+        if (ajax.status == 200 && ajax.readyState == 4){
+            if (ajax.response !== null){
+                const Form = document.getElementById('configuracaoRapida');
+                Form.MVA.value = ajax.response.mva;
+                Form.TRIBUTACAO.value = ajax.response.tributacao;
+                Form.TRIBUTACAO.dispatchEvent(new Event('change'));
+                Form.SITUACAO.value = ajax.response.situacao;
+            }
+        }
+    }
+
+    ajax.open("GET", "API/GET/CLIENTE/?cnpj=" + encodeURIComponent(CNPJ));
     ajax.responseType = "json";
     ajax.send();
 }
 
 function mostrarNotasFiscais(request_answer, container){  
-    informacoesDaEmpresa(request_answer[0]);
+
+    verificarSeOClienteEstaNaBaseDeDados(request_answer[0].dest.CNPJ);
+    informacoesDaempresa(request_answer[0]);
 
     request_answer.forEach(NF => {
         container.innerHTML += HTML_STRUCT(NF);
@@ -62,15 +84,15 @@ function mostrarNotasFiscais(request_answer, container){
     leitura_de_ncm();
 }
 
-function informacoesDaEmpresa(nota){
-    for(let i = 0; i < 4; i++){
-        let newCell = document.createElement('td');
-        if(i === 0){newCell.innerHTML = nota.dest.RAZAO_SOCIAL;}
-        if(i === 1){newCell.innerHTML = formatoCNPJ(nota.dest.CNPJ);}
-        if(i === 2){newCell.innerHTML = nota.dest.IE}
-        if(i === 3){newCell.innerHTML = nota.dest.UF}
-        document.getElementById('info-dest').appendChild(newCell);
-    }
+function informacoesDaempresa(nota_fiscal){
+    document.getElementById('RazaoSocialDasNotasCalculadas').textContent = nota_fiscal.dest.RAZAO_SOCIAL;
+
+    const Form = document.getElementById('configuracaoRapida');
+
+    Form.CNPJ.value = formatoCNPJ(nota_fiscal.dest.CNPJ);
+    Form.IE.value = nota_fiscal.dest.IE;
+    Form.UF.value = nota_fiscal.dest.UF;
+
 }
 
 function HTML_STRUCT(object_json){
@@ -152,7 +174,6 @@ function HTML_STRUCT(object_json){
 
     return HTML_STRUCT_NOTAFISCAL;
 }
-
 
 function listagemDeProdutos(lista_de_produtos, NF, CNPJ){
     let lista = "";

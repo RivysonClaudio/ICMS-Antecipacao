@@ -23,35 +23,12 @@
     </header>
 
     <main>
-        <table class="table-informacoes-iniciais">
-            <thead>
-                <tr>
-                    <th colspan="4">INFORMAÇÕES INICIAIS</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr id="info-dest">
-                </tr>
-                <tr>
-                    <td>Regime Tributário:</td>
-                    <td>
-                        <select name="regime-tributario" id="regime-tributario">
-                            <option value="1">Simples Nacional - EPP</option>
-                            <option value="2">Simples Nacional - ME</option>
-                            <option value="0">Contribuinte Normal</option>
-                        </select>
-                    </td>
-                    <td>Regularidade:</td>
-                    <td>                        
-                        <select name="regularidade" id="regularidade">
-                            <option value="1">Regular</option>
-                            <option value="0">Irregular</option>
-                        </select>
-                </td>
-                </tr>
-            </tbody>
+        <table id="table-informacoes-iniciais">
+            <tr>
+                <th colspan="4" id="RazaoSocialDasNotasCalculadas"></th>
+            </tr>
         </table>
-        <h5 style="margin: 10px;">Data do calculo: 19/04/2024</h5>
+        <h5 id="DataDoCalculo" style="margin: 10px;"></h5>
         <div id="container"></div>
     </main>
 
@@ -181,12 +158,78 @@
         </div>
     </span>
     <!-- /Janela Modal -->
+
+    <!-- MENU LATERAL ESQUERDO -->
+    <form action="javascript: void(0)" id="configuracaoRapida">
+        <div id="leftSideMenu"><span class="material-symbols-outlined" style="color: #2975c0;">arrow_right_alt</span></div>
+        <h4>INFORMAÇÕES DA EMPRESA</h4>
+        <br>
+        <h5>CNPJ:</h5>
+        <input name="CNPJ" type="text">
+        <br>
+        <div style="display: flex;">
+            <div style="margin-right: 5px;">
+                <h5>I.E:</h5>
+                <input name="IE" type="text">
+            </div>
+            <div style="width: 50px;">
+                <h5>UF:</h5>
+                <input name="UF" type="text" style="width: 100%;" value="PE">
+            </div>
+        </div>
+        <br>
+        <h5 title="Anexo 12 Decreto Nº 44.650/2017">MVA: 
+            <span class="material-symbols-outlined" style="font-size: small;">info</span>
+        </h5>
+        <input name="MVA" type="text">
+        <br>
+        <h5>TRIBUTAÇÃO:</h5>
+        <select name="TRIBUTACAO" id="TRIBUTACAO" onchange="tributacao(this.value)">
+            <option value="0">Simples Nacional - ME</option>
+            <option value="1">Simples Nacional - EPP</option>
+            <option value="2" selected>Contribuinte Normal</option>
+        </select>
+        <br>
+        <h5>SITUAÇÃO:</h5>
+        <select name="SITUACAO" id="SITUACAO">
+            <option value="0" selected>Regular</option>
+            <option value="1">Irregular</option>
+        </select>
+        <br>
+        <h5>COMPETENCIA:</h5>
+        <input type="text" placeholder="MM/AAAA">
+        <br>
+        <hr style="border: 0.1px solid rgb(201, 201, 201);">
+        <br>
+        <h5>ALIQUOTA EFETIVA - S.N.:</h5>
+        <div style="display: flex; justify-content: space-around; margin-top: 3px;">
+            <div style="width: 60px; margin-right: 5px;">
+                <h5 style="text-align: center;">4%</h5>
+                <input id="ALSN4" name="ALSN4" type="text" style="width: 100%;">
+            </div>
+            <div style="width: 60px; margin: 0px 5px;">
+                <h5 style="text-align: center;">7%</h5>
+                <input id="ALSN7" name="ALSN7" type="text" style="width: 100%;">
+            </div>
+            <div style="width: 60px; margin-left: 5px;">
+                <h5 style="text-align: center;">12%</h5>
+                <input id="ALSN12" name="ALSN12" type="text" style="width: 100%;">
+            </div>
+            <br>
+        </div>
+        <input id="submitInfoCliente" type="button" style="margin-top: 20px; cursor: pointer; background-color: #2975c0; padding: 15px 0px; color: white;" value="SALVAR" onclick="enviarInfoCliente()">
+    </form>
+    <!-- /MENU LATERAL ESQUERDO -->
+
     <script src="menus.js"></script>
     <script src="listarNCMS.js"></script>
     <script src="enviar_aquivos.js"></script>
     <script src="calculo.js"></script>
 
     <script script_NotaFiscal>
+        const dataAtual = new Date();
+        document.getElementById('DataDoCalculo').textContent = `Data do calculo: ${(dataAtual.getDate() <= 9)? "0" + dataAtual.getDate(): dataAtual.getDate()}/${(dataAtual.getMonth()+1 <= 9)? "0" + (dataAtual.getMonth()+1): dataAtual.getMonth()+1}/${dataAtual.getFullYear()}`;
+        
         function MostrarProdutos(event) {
             const produtos = event.target.closest('.NotaFiscal').querySelector('.NotaFiscal-Calculo');
             if(produtos.style.display === 'none'){produtos.style.display = ''; return;};
@@ -197,6 +240,43 @@
             if(calculo.style.display === 'none'){calculo.style.display = ''; return};
             calculo.style.display = 'none';
         }
+        function tributacao(value){
+            const ALSN4 = document.getElementById("ALSN4");
+            const ALSN7 = document.getElementById("ALSN7");
+            const ALSN12 = document.getElementById("ALSN12");
+
+            if(value == 0){
+                ALSN4.value = '4,86';
+                ALSN7.value = '5,02';
+                ALSN12.value = '5,31';
+            }
+            if(value == 1){
+                ALSN4.value = '13,62';
+                ALSN7.value = '11,05';
+                ALSN12.value = '6,37';
+            }
+            if(value == 2){
+                ALSN4.value = '';
+                ALSN7.value = '';
+                ALSN12.value = '';
+            }
+        }
+        
+        function enviarInfoCliente(){
+            const form = document.getElementById('configuracaoRapida');
+
+            const formData = new FormData(form);
+
+            const ajax = new XMLHttpRequest();
+
+            ajax.onload = () => {
+                location.reload();
+            }
+
+            ajax.open('POST', 'API/POST/CLIENTE/', true);
+            ajax.send(formData);
+        }
+
     </script>
 </body>
 </html>

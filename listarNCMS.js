@@ -28,7 +28,7 @@ function sendNCM(event){
         }
     }
 
-    ajax.open("POST", "CONEXAO_DB/set_ncm.php");
+    ajax.open("POST", "API/POST/NCM");
     ajax.send(formData);
 }
 
@@ -63,7 +63,7 @@ function chamarListaNCM(NCM_TABLE){
         }
     }
 
-    ajax.open("GET", "CONEXAO_DB/get_NCMS.php");
+    ajax.open("GET", "API/GET/NCM");
     ajax.responseType = "json";
     ajax.send();
 }
@@ -79,7 +79,7 @@ function chamarSegmentos(SEGMENTOS_LISTA){
         }
     }
 
-    ajax.open("GET", "CONEXAO_DB/get_segmentos.php");
+    ajax.open("GET", "API/GET/SEGMENTOS");
     ajax.responseType = "json";
     ajax.send();
 }

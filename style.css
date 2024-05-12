@@ -29,6 +29,9 @@
         align-items: center;
         width: 100%;
     }
+    h5{
+        color: black;
+    }
 
 /* TABELAS */
     th, td{
@@ -69,13 +72,9 @@
     .NotaFiscal-Resumo select{
         outline: none;
     }
-    .table-informacoes-iniciais{
+    #table-informacoes-iniciais{
         margin-top: 25px;
         width: 70%;
-    }
-    .table-informacoes-iniciais select{
-        outline: none;
-        font-size: inherit;
     }
     .abrir-calculo{
         background-color: #2975c0;
@@ -369,4 +368,42 @@
     }
     .controls-NCM-table span{
         cursor: pointer;
+    }
+
+/*MENU ESQUERDO*/
+    #configuracaoRapida{
+        background-color: #afd7ff;
+        position: fixed;
+        top: 10vh;
+        left: -15.5rem;
+        
+        padding: 10px;
+
+        display: flex;
+        flex-direction: column;
+        border-radius: 0px 0px 5px 0px;
+        transition: 500ms;
+    }
+    #configuracaoRapida input,select{
+        padding: 3px;
+        outline: none;
+        border-radius: 5px;
+        text-align: center;
+        margin-top: 2px;
+    }
+    #leftSideMenu{
+        position: absolute;
+        top: -0.3%;
+        right: -13%;
+        background-color: #afd7ff;
+        display: flex;
+        margin: 2px;
+        padding: 3.5px;
+        padding-left: 3px;
+        border-radius: 0px 5px 5px 0px;
+        cursor: pointer;
+    }
+    #configuracaoRapida:hover{
+        left: 0%;
+        transition: 500ms;
     }

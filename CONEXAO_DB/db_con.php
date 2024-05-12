@@ -105,3 +105,35 @@ function GET_DECRETOS(){
         return json_encode($rows);  
     }
 }
+
+function INSERT_CLIENTE($CNPJ, $MVA, $TRIBUTACAO, $SITUACAO){
+    $conn = GET_CONECTION();
+
+    $query = "INSERT INTO cliente (cnpj, mva, tributacao, situacao) VALUES ('$CNPJ','$MVA','$TRIBUTACAO','$SITUACAO')";
+    
+    mysqli_query($conn, $query);
+
+    mysqli_close($conn);
+
+    return "Cliente salvo na base de dados.";
+}
+
+function GET_CLIENTE($CNPJ){
+    $conn = GET_CONECTION();
+
+    $query = "SELECT * FROM cliente WHERE cnpj = '$CNPJ';";
+    
+    $sql = mysqli_query($conn, $query);
+
+    if (mysqli_num_rows($sql) > 0){
+        while($row = mysqli_fetch_assoc($sql)){
+            $result = json_encode($row);
+        }
+
+        mysqli_free_result($sql);
+    
+        mysqli_close($conn);
+
+        return $result;
+    }
+}

@@ -2,7 +2,7 @@
 
 require_once ".\CLASSES\NotaFiscal.php";
 
-$dir = 'xml\\';
+$dir = '../../POST/NOTAFISCAL/XML/';
 
 $files = scandir($dir);
 
