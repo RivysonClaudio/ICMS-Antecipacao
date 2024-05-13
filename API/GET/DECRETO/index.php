@@ -1,21 +1,21 @@
 <?php
 
-include_once 'C:\xampp\htdocs\www\ICMS_Fronteira\CONEXAO_DB\db_con.php';
+require_once '../../../CONEXAO_DB/db_con.php';
 
-echo GET_SEGMENTOS();
+echo GET_DECRETOS();
 
-function GET_SEGMENTOS(){
+function GET_DECRETOS(){
     $conn = GET_CONECTION();
 
-    $query = 'SELECT * FROM segmento';
+    $query = 'SELECT * FROM decreto;';
 
     $sql = mysqli_query($conn, $query);
 
     if($sql){
         while($row = mysqli_fetch_assoc($sql)){
             $rows[] = [
-                'id' => $row['cod'],
-                'seg' => $row['segmento']
+                'decreto' => $row['decreto'],
+                'link' => $row['link']
             ];
         }
 

@@ -63,6 +63,9 @@ function verificarSeOClienteEstaNaBaseDeDados(CNPJ){
                 Form.TRIBUTACAO.value = ajax.response.tributacao;
                 Form.TRIBUTACAO.dispatchEvent(new Event('change'));
                 Form.SITUACAO.value = ajax.response.situacao;
+                Form.ALSN4.value = parseFloat(ajax.response.alsn4)/100;
+                Form.ALSN7.value = parseFloat(ajax.response.alsn7)/100;
+                Form.ALSN12.value = parseFloat(ajax.response.alsn12)/100;
             }
         }
     }
