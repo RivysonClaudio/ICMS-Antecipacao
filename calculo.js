@@ -1,13 +1,46 @@
 const ALIQUOTA_INTERNA_ICMS = 20.5;
 
 function AntecipacaoTributaria(row){
+    const Form = document.getElementById('configuracaoRapida');
     const ITEM = infoITEM(row);
-    const VALOR_OPERACAO = ITEM['VALOR DO PRODUTO'] + ITEM['IPI'] + ITEM['FRETE'] + ITEM['SEGURO'] + ITEM['OUTRAS'] - ITEM['DESCONTO'];
-    const VALOR_OPERACAO_EXCLUINDO_ICMS = VALOR_OPERACAO - ITEM['VALOR ICMS NF'];
-    const BASE_CALCULO_AT = (VALOR_OPERACAO_EXCLUINDO_ICMS / (100 - ALIQUOTA_INTERNA_ICMS)) * 100;
-    const ICMS_AT = (BASE_CALCULO_AT * (ALIQUOTA_INTERNA_ICMS / 100)) - ITEM['VALOR ICMS NF']; 
 
-    return HTML_STRUCT_CALCULO_AT(BASE_CALCULO_AT, ITEM['ALIQUOTA ICMS'], ITEM['VALOR ICMS NF'], ALIQUOTA_INTERNA_ICMS, ICMS_AT);
+    let SN = false;
+
+    const VALOR_OPERACAO = ITEM['VALOR DO PRODUTO'] + ITEM['IPI'] + ITEM['FRETE'] + ITEM['SEGURO'] + ITEM['OUTRAS'] - ITEM['DESCONTO'];
+
+    const VALOR_OPERACAO_SEM_ICMS = VALOR_OPERACAO - ITEM['VALOR ICMS NF'];
+
+    const DIFAL = ALIQUOTA_INTERNA_ICMS - ITEM['ALIQUOTA ICMS'];
+
+    let RED_BC_AL_EFET_SN = 0;
+
+    let BASE_CALCULO = VALOR_OPERACAO_SEM_ICMS / (1 - (ALIQUOTA_INTERNA_ICMS/100));
+
+    let ICMS_AT = (BASE_CALCULO * (ALIQUOTA_INTERNA_ICMS/100)) - ITEM['VALOR ICMS NF'];
+
+    if (Form.TRIBUTACAO.value != 2 && Form.SITUACAO.value == 0){
+        SN = true;
+
+        RED_BC_AL_EFET_SN = aliquotaEfetivaSN(ITEM['ALIQUOTA ICMS'], Form) / DIFAL;
+
+        BASE_CALCULO = BASE_CALCULO * RED_BC_AL_EFET_SN;
+
+        ICMS_AT = BASE_CALCULO * (DIFAL/100);
+    }
+
+    function aliquotaEfetivaSN(ICMS_AL, Form){
+        if(ICMS_AL == 4){
+            return Form.ALSN4.value;
+        }
+        if(ICMS_AL == 7){
+            return Form.ALSN7.value;
+        }
+        if(ICMS_AL == 12){
+            return Form.ALSN12.value;
+        }
+    }
+
+    return HTML_STRUCT_CALCULO_AT(SN, VALOR_OPERACAO, ITEM['ALIQUOTA ICMS'], ITEM['VALOR ICMS NF'], DIFAL, RED_BC_AL_EFET_SN, BASE_CALCULO, ICMS_AT, aliquotaEfetivaSN(ITEM['ALIQUOTA ICMS'], Form));
 }
 
 function SubstituicaoTributaria(row, arrayDadosST){
@@ -28,31 +61,34 @@ function mva_ajustado(mva, al_inter, al_intra){
     return ((1 + (mva/100)) * (1 - (al_intra/100)) / (1 - (al_inter/100)));
 }
 
-function HTML_STRUCT_CALCULO_AT(BASE_CALCULO_AT, ICMS_AL, ICMS_ORIGEM, ALIQUOTA_INTERNA_ICMS, ICMS_AT){
+function HTML_STRUCT_CALCULO_AT(SN, VALOR_OPERACAO, ICMS_AL, ICMS_ORIGEM, DIFAL, RED_BC_AL_EFET_SN, BASE_CALCULO, ICMS_AT, ALSN){
     const STRUCT = `
     <table class="calculo-ICMS">
         <thead>
-            <th>B.C. ICMS NORMAL</th>
-            <th>REDUÇÃO B.C.</th>
-            <th>BASE REDUZIDA</th>
-            <th>ALIQ. INTERESTADUAL</th>
-            <th>ICMS NORMAL</th>
-            <th>MVA</th>
-            <th>ALIQ. INTERNA</th>
-            <th>ALIQ. RED. SN</th>
-            <th>ICMS ANT.</th>
+            <tr>
+                <th>VALOR OPERAÇÃO</th>
+                <th>ALIQ. ICMS</th>
+                <th>VALOR ICMS</th>
+                <th>BASE CALC.</th>
+                <th>RED. B.C.</th>
+                <th>BASE RED.</th>
+                <th>ALIQ. INTERES.</th>
+                <th>DIF. AL.</th>
+                <th>ICMS ANT.</th>
+            </tr>
         </thead>
         <tr>
-            <td>${BASE_CALCULO_AT.toFixed(2)}</td>
-            <td>${0}</td>
-            <td>${BASE_CALCULO_AT.toFixed(2)}</td>
+            <td>${VALOR_OPERACAO.toFixed(2)}</td>
             <td>${ICMS_AL}%</td>
             <td>${ICMS_ORIGEM}</td>
-            <td>${0}</td>
-            <td>${ALIQUOTA_INTERNA_ICMS.toFixed(2)}%</td>
-            <td>${0}</td>
+            <td>${((VALOR_OPERACAO - ICMS_ORIGEM) / (1 - (ALIQUOTA_INTERNA_ICMS/100))).toFixed(2)}</td>
+            <td>${RED_BC_AL_EFET_SN.toFixed(4)}</td>
+            <td>${BASE_CALCULO.toFixed(2)}</td>
+            <td>${ALIQUOTA_INTERNA_ICMS}%</td>
+            <td>${DIFAL}%</td>
             <td>${ICMS_AT.toFixed(2)}</td>
         </tr>
+        
     </table>
     `;
     
@@ -142,5 +178,5 @@ function infoITEM(ITEM){
                 'OUTRAS': OUTRAS_DESPESAS,
                 'DESCONTO': DESCONTO,
                 'ALIQUOTA ICMS': ICMS_AL,
-                'VALOR ICMS NF': ICMS_ORIGEM};
+                'VALOR ICMS NF': ICMS_ORIGEM    };
 }
