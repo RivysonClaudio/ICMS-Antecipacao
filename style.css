@@ -62,6 +62,7 @@
         overflow: hidden;
         border-spacing: 10px;
         width: 100%;
+        z-index: 1;
     }
     .NotaFiscal-Resumo th,td{
         padding: 5px;
@@ -116,6 +117,39 @@
     }
     .table-itens-NotaFiscal td:hover{
         cursor: pointer;
+    }
+    .lateral{
+        position: absolute;
+        left: -60px;
+        color: white;
+        background-color: #044482;
+        padding: 10px;
+        border-radius: 50%;
+        cursor: pointer;
+
+        animation: aparecer;
+    }
+    .mostrarResumo{
+        top: -125px;
+        animation-duration: 500ms;
+    }
+    .mostrarItens{
+        top: -70px;
+        animation-duration: 650ms;
+    }
+    .centralizar{
+        justify-content: center;
+        align-items: center;
+    }
+    @keyframes aparecer {
+        0%{left: 0;}
+        90%{left: -65px;}
+        100%{left: -60px;}
+    }
+    @keyframes esconder {
+        0%{left: -60px;}
+        10%{left: -65px;}
+        100%{left: 0}
     }
 
 /* MENU PRINCIPAL */
@@ -383,6 +417,8 @@
         flex-direction: column;
         border-radius: 0px 0px 5px 0px;
         transition: 500ms;
+
+        z-index: 2;
     }
     #configuracaoRapida input,select{
         padding: 3px;

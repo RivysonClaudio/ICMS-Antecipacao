@@ -148,7 +148,7 @@ function HTML_STRUCT(object_json){
             </tr>
         </table>
 
-        <div class="NotaFiscal-Calculo" style="display: none;">
+        <div class="NotaFiscal-Calculo" style="display: none; position: relative;">
             <table class="table-itens-NotaFiscal">
                 <thead>
                     <tr>
@@ -171,6 +171,13 @@ function HTML_STRUCT(object_json){
                     ${listagemDeProdutos(object_json.produtos, object_json.nNF, object_json.emit.CNPJ)}
                 </tbody>
             </table>
+
+            <div class="lateral mostrarResumo" title="Mostar o calculo resumido por NCM">
+                <span class="material-symbols-outlined centralizar" style="display: flex;">apps</span>
+            </div>
+            <div class="lateral mostrarItens" title="Mostar o calculo Item a Item">
+                <span class="material-symbols-outlined centralizar" style="display: flex;">menu</span>
+            </div>
         </div>
     </div>
     `;
