@@ -9,9 +9,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $CNPJ = str_replace(".", "", $CNPJ);
     $CNPJ = str_replace("/", "", $CNPJ);
     $CNPJ = str_replace("-", "", $CNPJ);
-    $ALSN4 = str_replace(".", "", $_POST["ALSN4"]);
-    $ALSN7 = str_replace(".", "", $_POST["ALSN7"]);
-    $ALSN12 = str_replace(".", "", $_POST["ALSN12"]);
+    $ALSN4 = $_POST["ALSN4"] == ""? 0: str_replace(".", "", $_POST["ALSN4"]);
+    $ALSN7 = $_POST["ALSN7"] == ""? 0: str_replace(".", "", $_POST["ALSN7"]);
+    $ALSN12 = $_POST["ALSN12"] == ""? 0: str_replace(".", "", $_POST["ALSN12"]);
 
     if (GET_CLIENTE($CNPJ) != ""){
         echo UPDATE_CLIENTE($CNPJ, $_POST["MVA"], $_POST["TRIBUTACAO"], $_POST["SITUACAO"], $ALSN4, $ALSN7, $ALSN12);
