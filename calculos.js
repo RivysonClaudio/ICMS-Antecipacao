@@ -16,7 +16,11 @@ function AntecipacaoTributaria(row){
 
     let BASE_CALCULO = VALOR_OPERACAO_SEM_ICMS / (1 - (ALIQUOTA_INTERNA_ICMS/100));
 
-    let ICMS_AT = (BASE_CALCULO * (ALIQUOTA_INTERNA_ICMS/100)) - ITEM['VALOR ICMS NF'];
+    let MVA = parseFloat(Form.MVA.value);
+
+    let BC_AGREGADA = BASE_CALCULO * (1 + (MVA/100));
+
+    let ICMS_AT = (BC_AGREGADA * (ALIQUOTA_INTERNA_ICMS/100)) - ITEM['VALOR ICMS NF'];
 
     if (Form.TRIBUTACAO.value != 2 && Form.SITUACAO.value == 0){
         SN = true;
@@ -40,12 +44,25 @@ function AntecipacaoTributaria(row){
         }
     }
 
-    return HTML_STRUCT_CALCULO_AT(SN, VALOR_OPERACAO, ITEM['ALIQUOTA ICMS'], ITEM['VALOR ICMS NF'], DIFAL, RED_BC_AL_EFET_SN, BASE_CALCULO, ICMS_AT, aliquotaEfetivaSN(ITEM['ALIQUOTA ICMS'], Form));
+    document.getElementById(row[0].parentElement.id).children[15].textContent = ICMS_AT.toFixed(2);
+
+    return HTML_STRUCT_CALCULO_AT(SN, VALOR_OPERACAO, ITEM['ALIQUOTA ICMS'], ITEM['VALOR ICMS NF'], DIFAL, RED_BC_AL_EFET_SN, BASE_CALCULO, ICMS_AT, aliquotaEfetivaSN(ITEM['ALIQUOTA ICMS'], Form), MVA);
 }
 
 function SubstituicaoTributaria(row, arrayDadosST){
     const ITEM = infoITEM(row);
-    const VALOR_OPERACAO = ITEM['VALOR DO PRODUTO'] + ITEM['IPI'] + ITEM['FRETE'] + ITEM['SEGURO'] + ITEM['OUTRAS'] - ITEM['DESCONTO'];
+
+    const VALOR_OPERACAO = ITEM['VALOR DO PRODUTO'] + ITEM['IPI'] + ITEM['FRETE'] + ITEM['SEGURO'] + ITEM['OUTRAS'];
+
+    const RED_BC = 0;
+
+    const BASE_CALCULO_RED = VALOR_OPERACAO * (1 + (RED_BC/100));
+
+    const BC_AJUSTADO = BASE_CALCULO_RED * mva_ajustado(arrayDadosST[1], arrayDadosST[2], ITEM['ALIQUOTA ICMS']);
+
+    const ICMS_ST = (BC_AJUSTADO * (arrayDadosST[2]/100)) - (ITEM['VALOR DO PRODUTO'] * (ITEM['ALIQUOTA ICMS']/100));
+
+    document.getElementById(row[0].parentElement.id).children[15].textContent = ICMS_ST.toFixed(2);
 
     return HTML_STRUCT_CALCULO_ST(arrayDadosST[0], VALOR_OPERACAO, ITEM['ALIQUOTA ICMS'], ITEM['VALOR ICMS NF'], arrayDadosST[1], arrayDadosST[2], ITEM['VALOR DO PRODUTO']);
 }
@@ -61,8 +78,8 @@ function mva_ajustado(mva, al_inter, al_intra){
     return ((1 + (mva/100)) * (1 - (al_intra/100)) / (1 - (al_inter/100)));
 }
 
-function HTML_STRUCT_CALCULO_AT(SN, VALOR_OPERACAO, ICMS_AL, ICMS_ORIGEM, DIFAL, RED_BC_AL_EFET_SN, BASE_CALCULO, ICMS_AT, ALSN){
-    const STRUCT = `
+function HTML_STRUCT_CALCULO_AT(SN, VALOR_OPERACAO, ICMS_AL, ICMS_ORIGEM, DIFAL, RED_BC_AL_EFET_SN, BASE_CALCULO, ICMS_AT, ALSN, MVA){
+    const STRUCT_SN = `
     <table class="calculo-ICMS">
         <thead>
             <tr>
@@ -91,7 +108,42 @@ function HTML_STRUCT_CALCULO_AT(SN, VALOR_OPERACAO, ICMS_AL, ICMS_ORIGEM, DIFAL,
         
     </table>
     `;
+
+    const STRUCT = `
+    <table class="calculo-ICMS">
+        <thead>
+            <tr>
+                <th>VALOR OPERAÇÃO</th>
+                <th>ALIQ. ICMS</th>
+                <th>VALOR ICMS</th>
+                <th>BASE CALC.</th>
+                <th>RED. B.C.</th>
+                <th>BASE RED.</th>
+                <th>MVA</th>
+                <th>BASE CALC.</th>
+                <th>ALIQ. INTERES.</th>
+                <th>ICMS ANT.</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>${VALOR_OPERACAO.toFixed(2)}</td>
+            <td>${ICMS_AL}%</td>
+            <td>${ICMS_ORIGEM}</td>
+            <td>${((VALOR_OPERACAO - ICMS_ORIGEM) / (1 - (ALIQUOTA_INTERNA_ICMS/100))).toFixed(2)}</td>
+            <td>${0}</td>
+            <td>${BASE_CALCULO.toFixed(2)}</td>
+            <td>${MVA.toFixed(2)}%</td>
+            <td>${(BASE_CALCULO * (1 + (MVA/100))).toFixed(2)}</td>
+            <td>${ALIQUOTA_INTERNA_ICMS}%</td>
+            <td>${ICMS_AT.toFixed(2)}</td>
+        </tr>
+        
+    </table>
+    `;
     
+    if(SN){
+        return STRUCT_SN;
+    }
     return STRUCT;
 }
 

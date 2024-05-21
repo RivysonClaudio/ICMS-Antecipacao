@@ -101,7 +101,7 @@ function informacoesDaempresa(nota_fiscal){
 function HTML_STRUCT(object_json){
     const HTML_STRUCT_NOTAFISCAL = 
     `
-    <div class="NotaFiscal">
+    <div id="${object_json.chave}" class="NotaFiscal">
         <table class="NotaFiscal-Resumo">
             <tr>
                 <td class="abrir-calculo" rowspan="2" onclick="MostrarProdutos(event)">
@@ -164,6 +164,7 @@ function HTML_STRUCT(object_json){
                         <th>SEGURO</th>
                         <th>DESPESAS ACESSORIAS</th>
                         <th>DESCONTO</th>
+                        <th>CALCULO</th>
                         <th>ICMS</th>
                     </tr>
                 </thead>
@@ -218,38 +219,10 @@ function HTML_STRUCT_PRODUTO(produto, NF, CNPJ){
                 <option value="2">Dif. Al.</option>
             </select>
         </td>
+        <td>0,00</td>
     </tr>
     <tr class="calculo" style="display: none;">
-        <td id="NI${produto.nItem}NF${NF+CNPJ}CALC" colspan="13" style="background-color: transparent;">
-            <table class="calculo-ICMS">
-                <thead>
-                    <th>SEGMENTO</th>
-                    <th>BASE DE CALCULO<br>ICMS NORMAL</th>
-                    <th>REDUÇÃO<br>BASE DE CALCULO</th>
-                    <th>BASE REDUZIDA</th>
-                    <th>ALIQUOTA<br>ICMS NORMAL</th>
-                    <th>VALOR<br>ICMS NORMAL</th>
-                    <th>MVA</th>
-                    <th>MVA<br>AJUSTADO</th>
-                    <th>BASE DE CALCULO<br>ICMS ST</th>
-                    <th>ALIQUOTA<br>ICMS ST</th>
-                    <th>VALOR<br>ICMS ST</th>
-                </thead>
-                <tr>
-                    <td>AUTOPEÇAS</td>
-                    <td>151,00</td>
-                    <td>0</td>
-                    <td>151,00</td>
-                    <td>4,00</td>
-                    <td>6,04</td>
-                    <td>71,78</td>
-                    <td>101,11</td>
-                    <td>319,46</td>
-                    <td>20,50</td>
-                    <td>59,45</td>
-                </tr>
-            </table>
-        </td>
+        <td id="NI${produto.nItem}NF${NF+CNPJ}CALC" colspan="14" style="background-color: transparent;"></td>
     </tr>
     `;
 
@@ -325,6 +298,8 @@ function leitura_de_ncm(){
                 }
             })
         })
+
+        TotalImposto('');
     }, 100);
 }
 
@@ -339,8 +314,40 @@ function procurarNCM(row){
                 row.children[14].children[0].value = 0;
                 return [ncm.children[3].textContent, parseFloat(ncm.children[5].textContent)/100, parseFloat(ncm.children[4].textContent)/100];
             }
+            if (ncm_procurado == ncm.children[0].textContent && ncm.children[1].textContent != row.children[2].textContent){
+                row.children[14].children[0].value = 0;
+                return [ncm.children[3].textContent, parseFloat(ncm.children[5].textContent)/100, parseFloat(ncm.children[4].textContent)/100];
+            }
             ncm_procurado = ncm_procurado.slice(0, -1);
         }
     }
     return 0;
+}
+
+function TotalImposto(nota){
+    if(nota == ''){
+        document.querySelectorAll('#container div.NotaFiscal').forEach(nota =>{
+        let itens = nota.querySelectorAll('.table-itens-NotaFiscal tr')
+        let totaNota = 0
+        let totalImposto = 0;
+
+        itens.forEach(item =>{
+            if(item.children.length == 16){
+            totalImposto += parseFloat(item.children[15].textContent)
+
+                if (item.children[6].textContent != 'VALOR'){
+                    totaNota += getItemValor(item.children[6].textContent) + getItemValor(item.children[7].textContent) + getItemValor(item.children[8].textContent) + getItemValor(item.children[9].textContent) + getItemValor(item.children[10].textContent) - getItemValor(item.children[11].textContent)
+                }
+            }
+        })
+        
+        nota.querySelectorAll(".NotaFiscal-Resumo tr")[1].children[1].textContent = totaNota.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})
+        nota.querySelectorAll(".NotaFiscal-Resumo tr")[1].children[3].textContent = totalImposto.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})
+
+        function getItemValor(item){
+            if(item != ''){return parseFloat(item)}
+            return 0
+        }
+        })
+    }
 }

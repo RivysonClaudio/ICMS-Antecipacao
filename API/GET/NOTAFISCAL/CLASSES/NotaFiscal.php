@@ -4,6 +4,7 @@ require_once ".\CLASSES\Produto.php";
 
 class NotaFiscal
 {
+    var $chave;
     var $nNF;
     var $dhEmi;
     var $emit;
@@ -11,6 +12,8 @@ class NotaFiscal
     var $produtos = array();
 
     public function __construct($xml){
+        $this->chave = (string) $xml->NFe->infNFe["Id"];
+
         $this->nNF = (string)$xml->NFe->infNFe->ide->nNF;
         $this->dhEmi = (string)$xml->NFe->infNFe->ide->dhEmi;
 

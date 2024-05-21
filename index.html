@@ -69,7 +69,7 @@
             </section>
         </div>
         <div id="modal-cadastrar-ncm" onclick="event.stopPropagation()" style="display: none;">
-            <form action="javascript: void(0)" id="ncm-form">
+            <form id="ncm-form" action="javascript: void(0)">
                 <label for="NCM">NCM</label>
                 <input id="NCM" type="text" name="NCM">
                 <label for="CEST">CEST</label>
@@ -86,7 +86,7 @@
                 <input id="STATUS" type="search" name="STATUS" onfocus="mostrarItens('STATUS')" readonly>
                 <label for="OBSERVACAO">OBSERVAÇÃO</label>
                 <input id="OBSERVACAO" type="search" name="OBSERVACAO" onfocus="mostrarItens('OBSERVACAO')">
-                <input id="SALVAR-NCM" type="submit" value="SALVAR">
+                <input id="SALVAR-NCM" type="submit" value="SALVAR" onclick="sendNCM()">
             </form>
             <div id="menu-search">
                 <ul id="segmentos" style="display: none;"></ul>
@@ -223,8 +223,8 @@
 
     <script src="menus.js"></script>
     <script src="listarNCMS.js"></script>
-    <script src="enviar_aquivos.js"></script>
-    <script src="calculo.js"></script>
+    <script src="enviar_arquivos.js"></script>
+    <script src="calculos.js"></script>
 
     <script script_NotaFiscal>
         const dataAtual = new Date();
@@ -276,7 +276,6 @@
             ajax.open('POST', 'API/POST/CLIENTE/', true);
             ajax.send(formData);
         }
-
     </script>
 </body>
 </html>

@@ -1,6 +1,6 @@
-const NCM_form = document.getElementById('ncm-form');
+//const NCM_form = document.getElementById('ncm-form');
 
-NCM_form.addEventListener('submit', sendNCM, false);
+//NCM_form.addEventListener('submit', sendNCM, false);
 
 const NCMS = document.getElementById('listarNCMS');
 
@@ -14,21 +14,31 @@ if(SEGMENTOS.textContent == ""){
     chamarSegmentos(SEGMENTOS);
 }
 
-function sendNCM(event){
-    let formData, ajax;
+function sendNCM(){
+    const form = document.getElementById('ncm-form');
 
-    formData = new FormData(event.target);
+    document.querySelectorAll('#segmentos li').forEach(seg => {
+        if (seg.textContent == form.SEGMENTO.value){form.SEGMENTO.value = seg.id}
+    })
 
-    ajax = new XMLHttpRequest();
+    form.DECRETO.value = '1';
+
+    form.STATUS.value = (form.STATUS.value == 'ATIVO')? '1': '0';
+
+    const formData = new FormData(form);
+
+    const ajax = new XMLHttpRequest();
 
     ajax.onreadystatechange = () =>{
         if (ajax.status === 200 && ajax.readyState === 4){
-            NCM_form.reset();
-            console.log(ajax.response)
+            if (ajax.response == 'NCM Salvo com sucesso no Banco de Dados.'){
+                form.reset()
+                chamarListaNCM(NCMS)
+            }
         }
     }
 
-    ajax.open("POST", "API/POST/NCM");
+    ajax.open("POST", "API/POST/NCM/", true);
     ajax.send(formData);
 }
 
