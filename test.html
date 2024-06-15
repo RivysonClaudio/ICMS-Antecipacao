@@ -7,68 +7,47 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
-        @keyframes aparecer {
-            0%{left: 0;}
-            90%{left: -65px;}
-            100%{left: -60px;}
-        }
 
-        @keyframes esconder {
-            0%{left: -60px;}
-            10%{left: -65px;}
-            100%{left: 0}
-        }
-        .lateral-test{
-            position: absolute;
-            left: -60px;
-            color: white;
-            background-color: #044482;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-
-            animation: esconder;
-        }
-        .mostrarResumo-test{
-            top: 0px;
-            animation-duration: 500ms;
-        }
-        .mostrarItens-test{
-            top: 60px;
-            animation-duration: 600ms;
-        }
-        .centralizar-test{
-            justify-content: center;
-            align-items: center;
-        }
     </style>
 </head>
 <body>
     <main>
-        <div style="position: relative; margin-top: 300px;">
-            <table style="position: relative; z-index: 1;">
-                <thead>
-                    <tr>
-                        <th>INDEX</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>1</td></tr>
-                    <tr><td>2</td></tr>
-                    <tr><td>3</td></tr>
-                    <tr><td>4</td></tr>
-                    <tr><td>5</td></tr>
-                    <tr><td>6</td></tr>
-                    <tr><td>7</td></tr>
-                </tbody>
-            </table>
-            <div class="lateral-test mostrarResumo-test">
-                <span class="material-symbols-outlined centralizar-test" style="display: flex;">apps</span>
-            </div>
-            <div class="lateral-test mostrarItens-test">
-                <span class="material-symbols-outlined centralizar-test" style="display: flex;">menu</span>
-            </div>
-        </div>
+        <table>
+            <thead>
+                <th colspan="7">
+                    <table>
+                        <tr>
+                            <th>SUB. TRIBUT.:</th>
+                            <td style="min-width: 150px;">0,00</td>
+                            <th>ANTECIPAÇÃO:</th>
+                            <td style="min-width: 150px;">0,00</td>
+                            <th>DIF. ALIQ.:</th>
+                            <td style="min-width: 150px;">0,00</td>
+                        </tr>
+                    </table>
+                </th>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>NCM</th>
+                    <th>CEST</th>
+                    <th>SEGMENTO</th>
+                    <th>ALIQ. INTER.</th>
+                    <th>VALOR PRODUTO</th>
+                    <th>BASE CALCULO</th>
+                    <th>ICMS</th>
+                </tr>
+                <tr>
+                    <td>84810000</td>
+                    <td>0199900</td>
+                    <td>AUTOPEÇAS</td>
+                    <td>4%</td>
+                    <td>10,00</td>
+                    <td>21,70</td>
+                    <td>2,50</td>
+                </tr>
+            </tbody>
+        </table>
     </main>
 </body>
 </html>

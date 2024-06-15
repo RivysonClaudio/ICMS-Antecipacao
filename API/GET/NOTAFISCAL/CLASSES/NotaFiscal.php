@@ -10,6 +10,7 @@ class NotaFiscal
     var $emit;
     var $dest;
     var $produtos = array();
+    var $vST;
 
     public function __construct($xml){
         $this->chave = (string) $xml->NFe->infNFe["Id"];
@@ -32,5 +33,7 @@ class NotaFiscal
         foreach($xml->NFe->infNFe->det as $item){
             $this->produtos[] = new Produto($item);
         }
+
+        $this->vST = (string)$xml->NFe->infNFe->total->ICMSTot->vST;
     }
 }

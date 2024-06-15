@@ -104,6 +104,12 @@
         background-color: #2975c0;
         border-bottom: 5px solid #2975c0;
     }
+    .table-resumo-NotaFiscal{
+        border: 2px solid #2975c0;
+        padding: 3px;
+        border-radius: 5px;
+        background-color: #afd7ff;  
+    }
     .table-itens-NotaFiscal{
         border: 2px solid #2975c0;
         padding: 3px;

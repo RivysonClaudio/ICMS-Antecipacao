@@ -222,11 +222,12 @@
     <!-- /MENU LATERAL ESQUERDO -->
 
     <script src="menus.js"></script>
+    <script src="Layouts.js"></script>
     <script src="listarNCMS.js"></script>
     <script src="enviar_arquivos.js"></script>
     <script src="calculos.js"></script>
 
-    <script script_NotaFiscal>
+    <script>
         const dataAtual = new Date();
         document.getElementById('DataDoCalculo').textContent = `Data do calculo: ${(dataAtual.getDate() <= 9)? "0" + dataAtual.getDate(): dataAtual.getDate()}/${(dataAtual.getMonth()+1 <= 9)? "0" + (dataAtual.getMonth()+1): dataAtual.getMonth()+1}/${dataAtual.getFullYear()}`;
         
@@ -240,6 +241,7 @@
             if(calculo.style.display === 'none'){calculo.style.display = ''; return};
             calculo.style.display = 'none';
         }
+
         function tributacao(value){
             const ALSN4 = document.getElementById("ALSN4");
             const ALSN7 = document.getElementById("ALSN7");
